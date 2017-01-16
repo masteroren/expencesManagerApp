@@ -1,0 +1,27 @@
+.expenses-wrapper {
+    width: 80%;
+}
+
+.submit-btn {
+    width: 50px;
+}
+
+.foodName{
+    color: #00aafc;
+}
+
+.user-name{
+}
+
+.action-image {
+    width: 40px;
+    height: 40px;
+    vertical-align: center;
+}
+
+.action-label {
+    color: #3C5AFD;
+    font-size: 24px;
+    font-weight: bold;
+    vertical-align: center;
+}

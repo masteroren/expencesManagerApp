@@ -1,0 +1,38 @@
+<ActionBar>
+    <StackLayout orientation="horizontal"
+                 ios:horizontalAlignment="center"
+                 android:horizontalAlignment="left">
+        <Image src="res://nativescript_icon" class="action-image"></Image>
+        <Label text="Logout" class="action-label"></Label>
+    </StackLayout>
+</ActionBar>
+<StackLayout class="expenses-wrapper">
+    <Label class="user-name width70p" fontSize="20" heignt="30" text="Hello {{userName}}"></Label>
+
+    <GridLayout columns="120,120" rows="25,25" class="width70p">
+        <DockLayout row="0" col="0" orientation="vertical">
+            <Checkbox #food text="{{recipeTypes[0].text}}" checked="false"></Checkbox>
+        </DockLayout>
+
+        <DockLayout row="0" col="1" orientation="vertical">
+            <Checkbox #parking text="{{recipeTypes[1].text}}" checked="false"></Checkbox>
+        </DockLayout>
+
+        <DockLayout row="1" col="0" orientation="vertical">
+            <Checkbox #driving text="{{recipeTypes[2].text}}" checked="false"></Checkbox>
+        </DockLayout>
+
+        <DockLayout row="1" col="1" orientation="vertical">
+            <Checkbox #other text="{{recipeTypes[3].text}}" checked="false"></Checkbox>
+        </DockLayout>
+    </GridLayout>
+
+    <TextField #amount class="width70p" hint="Amount (NIS)"></TextField>
+
+    <GridLayout columns="100,100" rows="70" width="210">
+        <Button row="0" col="0" class="btn submit-btn" width="100" text="Clear"
+                (tap)="amount.text = ''; clear()"></Button>
+        <Button row="0" col="1" class="btn submit-btn" width="100" text="Add" (tap)="add(amount.text)"></Button>
+    </GridLayout>
+
+</StackLayout>
