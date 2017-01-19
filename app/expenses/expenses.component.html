@@ -1,13 +1,9 @@
-<ActionBar>
-    <StackLayout orientation="horizontal"
-                 ios:horizontalAlignment="center"
-                 android:horizontalAlignment="left">
-        <Image src="res://nativescript_icon" class="action-image"></Image>
-        <Label text="Logout" class="action-label"></Label>
-    </StackLayout>
+<ActionBar title="Expenses Manager">
+    <NavigationButton text="Go Back" android.systemIcon="ic_menu_back"></NavigationButton>
 </ActionBar>
 <StackLayout class="expenses-wrapper">
-    <Label class="user-name width70p" fontSize="20" heignt="30" text="Hello {{userName}}"></Label>
+    <Label class="width70p" fontSize="20" width="150" height="50" horizontalAlignment="center"
+           text="Hello {{userName}}"></Label>
 
     <GridLayout columns="120,120" rows="25,25" class="width70p">
         <DockLayout row="0" col="0" orientation="vertical">

@@ -2,25 +2,19 @@
 var core_1 = require("@angular/core");
 var page_1 = require("ui/page");
 var element_registry_1 = require("nativescript-angular/element-registry");
-var httpService_1 = require("../shared/services/httpService");
 element_registry_1.registerElement("CheckBox", function () { return require("nativescript-checkbox").CheckBox; });
+// Native Script core
 var cameraModule = require("camera");
-var imageModule = require("ui/image");
 var fs = require("file-system");
-var appSettings = require("application-settings");
 require("nativescript-localstorage");
 var ExpensesComponent = (function () {
-    function ExpensesComponent(page, httpService) {
-        var _this = this;
+    function ExpensesComponent(page) {
         this.page = page;
-        this.httpService = httpService;
         page.actionBar.title = 'Expenses Manager';
-        var token = localStorage.getItem('token');
-        this.httpService.get('auth', { token: token })
-            .subscribe(function (response) {
-            _this.userName = response.name;
-            localStorage.setItem('name', response.name);
-        });
+        var user = localStorage.getItem('user');
+        if (user) {
+            this.userName = JSON.parse(user).name;
+        }
     }
     ExpensesComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -72,11 +66,9 @@ var ExpensesComponent = (function () {
             return item.checked;
         });
         if (checkedItems.length !== 0 && amount !== '') {
-            cameraModule.takePicture({ width: 50, height: 50, keepAspectRatio: false }).then(function (picture) {
-                console.log("Result is an image source instance");
-                // this.httpService.get('upload', {token: token})
+            cameraModule.takePicture({ width: 50, height: 50, keepAspectRatio: false, saveToGallery: true }).then(function (picture) {
+                // this.httpService.get('upload', {})
                 //     .subscribe(response => {
-                //         this.userName = response.name;
                 //     });
             });
         }
@@ -100,10 +92,9 @@ var ExpensesComponent = (function () {
     ExpensesComponent = __decorate([
         core_1.Component({
             selector: 'app-expenses',
-            templateUrl: "expenses/expenses.component.html",
-            providers: [httpService_1.HttpService]
+            templateUrl: "expenses/expenses.component.html"
         }), 
-        __metadata('design:paramtypes', [page_1.Page, httpService_1.HttpService])
+        __metadata('design:paramtypes', [page_1.Page])
     ], ExpensesComponent);
     return ExpensesComponent;
 }());

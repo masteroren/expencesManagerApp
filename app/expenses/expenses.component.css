@@ -1,5 +1,7 @@
 .expenses-wrapper {
     width: 80%;
+    border-width: 1px;
+    border-color: #00aafc;
 }
 
 .submit-btn {
@@ -8,9 +10,6 @@
 
 .foodName{
     color: #00aafc;
-}
-
-.user-name{
 }
 
 .action-image {

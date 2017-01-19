@@ -3,20 +3,17 @@ import {Page} from "ui/page";
 import observableArrayModule = require("data/observable-array");
 import {CheckBox} from 'nativescript-checkbox';
 import {registerElement} from "nativescript-angular/element-registry";
-import {HttpService} from "../shared/services/httpService";
 registerElement("CheckBox", () => require("nativescript-checkbox").CheckBox);
 
+// Native Script core
 let cameraModule = require("camera");
-let imageModule = require("ui/image");
 let fs = require("file-system");
-let appSettings = require("application-settings");
 
 require("nativescript-localstorage");
 
 @Component({
     selector: 'app-expenses',
-    templateUrl: "expenses/expenses.component.html",
-    providers: [HttpService]
+    templateUrl: "expenses/expenses.component.html"
 })
 export class ExpensesComponent {
     recipeTypes: Array<RecipeType>;
@@ -27,15 +24,12 @@ export class ExpensesComponent {
     @ViewChild("driving") drivingCheckBox: ElementRef;
     @ViewChild("other") otherCheckBox: ElementRef;
 
-    constructor(private page: Page, private httpService: HttpService) {
-        let token = localStorage.getItem('token');
-
-
-        this.httpService.get('auth', {token: token})
-            .subscribe(response => {
-                this.userName = response.name;
-                localStorage.setItem('name', response.name);
-            });
+    constructor(private page: Page) {
+        page.actionBar.title = 'Expenses Manager';
+        let user = localStorage.getItem('user');
+        if (user){
+            this.userName = JSON.parse(user).name;
+        }
     }
 
     ngOnInit() {
@@ -92,12 +86,10 @@ export class ExpensesComponent {
 
         if (checkedItems.length !== 0 && amount !== '') {
 
-            cameraModule.takePicture({width: 50, height: 50, keepAspectRatio: false}).then(picture => {
-                console.log("Result is an image source instance");
+            cameraModule.takePicture({width: 50, height: 50, keepAspectRatio: false, saveToGallery: true}).then(picture => {
 
-                // this.httpService.get('upload', {token: token})
+                // this.httpService.get('upload', {})
                 //     .subscribe(response => {
-                //         this.userName = response.name;
                 //     });
             });
         }

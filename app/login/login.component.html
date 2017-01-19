@@ -5,9 +5,9 @@
         <Button class="btn login-btn" text="Login" (tap)="onTap(phone.text, pass.text)"></Button>
     </StackLayout>
 
-    <StackLayout *ngIf="!showLogin">
-        <Label text="Hello {{ userName }}"></Label>
-        <Button text="Expenses" [nsRouterLink]="['/expenses']"></Button>
+    <StackLayout *ngIf="!showLogin" class="login-box">
+        <Label text="Hello {{ userName }}" fontSize="30" class="width70p"></Label>
+        <Button text="Expenses" [nsRouterLink]="['/expenses']" class="width70p"></Button>
     </StackLayout>
 </StackLayout>
 

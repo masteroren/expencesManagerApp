@@ -1,3 +1,8 @@
+.login-page{
+  background-image: url("res://background.png");
+  background-repeat: no-repeat;
+}
+
 .login-box{
   margin-top: 15%;
   border-width: 1px;
