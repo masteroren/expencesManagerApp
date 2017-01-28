@@ -13,8 +13,6 @@ require("nativescript-localstorage");
     providers: [HttpService]
 })
 export class LoginComponent {
-    private phoneNumber: string;
-    private password: string;
     showLogin: boolean = true;
     _userName: string = '';
 
@@ -24,6 +22,10 @@ export class LoginComponent {
             this._userName = JSON.parse(user).name;
             this.showLogin = false;
         }
+    }
+
+    ngOnInit(){
+        this.page.actionBarHidden = true;
     }
 
     set userName(value){
@@ -45,14 +47,29 @@ export class LoginComponent {
         }
     }
 
-    onTap(phone, pass) {
-        this.httpService.get('login', {phone: phone, password: pass})
-            .subscribe(response => {
-                localStorage.setItem('token', response.user.token);
+    logOff(){
+        localStorage.removeItem('user');
+        this.showLogin = true;
 
-                this.httpService.get('auth', {token: response.user.token})
+    }
+
+    onTap(phone, password) {
+        this.httpService.login(phone.text, password.text)
+
+            .subscribe(response => {
+                phone.text = '';
+                password.text = '';
+
+                localStorage.setItem('token', response.token);
+
+                console.log(response.token);
+
+                this.httpService.auth(response.token)
                     .subscribe(response => {
-                        localStorage.setItem('user', JSON.stringify(response));
+
+                        console.log(response.user.name);
+
+                        localStorage.setItem('user', JSON.stringify(response.user));
                         this.showLogin = false;
 
                         this.routerExtensions.navigate(["/expenses"], {
@@ -63,8 +80,9 @@ export class LoginComponent {
                     });
 
             }, error => {
+                console.log('Login error => ', error);
                 dialogs.alert({
-                    message: 'Login error'
+                    message: error.message
                 })
             });
     }

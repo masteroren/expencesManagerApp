@@ -1,19 +1,22 @@
 import {Component, ViewChild, ElementRef} from "@angular/core";
 import {Page} from "ui/page";
-import observableArrayModule = require("data/observable-array");
 import {CheckBox} from 'nativescript-checkbox';
 import {registerElement} from "nativescript-angular/element-registry";
 registerElement("CheckBox", () => require("nativescript-checkbox").CheckBox);
+import {HttpService} from "../shared/services/httpService";
 
 // Native Script core
-let cameraModule = require("camera");
-let fs = require("file-system");
+import imageModule = require("ui/image");
+import cameraModule = require("camera");
+import imageSource = require("image-source");
+import fs = require("file-system");
 
 require("nativescript-localstorage");
 
 @Component({
     selector: 'app-expenses',
-    templateUrl: "expenses/expenses.component.html"
+    templateUrl: "expenses/expenses.component.html",
+    providers: [HttpService]
 })
 export class ExpensesComponent {
     recipeTypes: Array<RecipeType>;
@@ -24,10 +27,10 @@ export class ExpensesComponent {
     @ViewChild("driving") drivingCheckBox: ElementRef;
     @ViewChild("other") otherCheckBox: ElementRef;
 
-    constructor(private page: Page) {
+    constructor(private page: Page, private httpService: HttpService) {
         page.actionBar.title = 'Expenses Manager';
         let user = localStorage.getItem('user');
-        if (user){
+        if (user) {
             this.userName = JSON.parse(user).name;
         }
     }
@@ -59,7 +62,7 @@ export class ExpensesComponent {
             this.recipeTypes[item.index].element.nativeElement.on('tap', () => {
                 this.onTapCheckBox(item.index);
             })
-        })
+        });
     }
 
     onTapCheckBox(index: number) {
@@ -84,13 +87,20 @@ export class ExpensesComponent {
             return item.checked;
         });
 
-        if (checkedItems.length !== 0 && amount !== '') {
+        if (checkedItems.length === 1 && amount !== '') {
 
-            cameraModule.takePicture({width: 50, height: 50, keepAspectRatio: false, saveToGallery: true}).then(picture => {
+            cameraModule.takePicture({width: 50, height: 50, keepAspectRatio: true}).then(picture => {
 
-                // this.httpService.get('upload', {})
-                //     .subscribe(response => {
-                //     });
+                this.httpService.upload({
+                    user: this.userName,
+                    category: checkedItems[0].text,
+                    amount: amount,
+                    // picture: picture
+                })
+                    .subscribe(response => {
+                        console.log(response.invoices);
+                        console.log(response.message);
+                    });
             });
         }
     }
@@ -102,25 +112,3 @@ interface RecipeType {
     checked: boolean,
     element: ElementRef
 }
-
-
-// var cameraModule = require('camera');
-//
-// var some_url="http://somesite";
-// // img is a image source
-// cameraModule.takePicture().then(function (img) {
-//     // You can use "jpeg" or "png".   Apparently "png" doesn't work in some
-//     // cases on iOS.
-//     var imageData = img.toBase64String("jpeg");
-//
-//     http.request({
-//         url: some_url,
-//         method: "POST",
-//         headers: { "Content-Type": "application/base64" },
-//         content: imageData
-//     }).then(function() {
-//         console.log("Woo Hoo, we sent our image up to the server!");
-//     }).catch(function(e) {
-//         console.log("Uh oh, something went wrong", e);
-//     });
-// });

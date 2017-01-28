@@ -23,6 +23,10 @@
         </DockLayout>
     </GridLayout>
 
+    <!--<ListView>-->
+
+    <!--</ListView>-->
+
     <TextField #amount class="width70p" hint="Amount (NIS)"></TextField>
 
     <GridLayout columns="100,100" rows="70" width="210">
@@ -30,5 +34,4 @@
                 (tap)="amount.text = ''; clear()"></Button>
         <Button row="0" col="1" class="btn submit-btn" width="100" text="Add" (tap)="add(amount.text)"></Button>
     </GridLayout>
-
 </StackLayout>

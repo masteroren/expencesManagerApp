@@ -1,50 +1,40 @@
 import {Injectable} from "@angular/core";
-import {Http, Headers, Response, RequestOptions, URLSearchParams} from "@angular/http";
-import {Observable as RxObservable} from "rxjs/Rx";
+import {Http} from "@angular/http";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/toPromise";
 
-const BASE_URL = 'http://192.168.1.5:3030';
+const BASE_URL = 'http://expensesrest.orenwebtest.com';
 
 @Injectable()
 export class HttpService {
     constructor(private http: Http) {
     }
 
-    get(method: string, payload: any = {}): any {
-        let params = new URLSearchParams();
-        for (let key in payload) {
-            params.set(key, payload[key]);
-        }
-
-        return this.http.get(`${BASE_URL}/${method}`, {
-            search: params
-        })
-            .map(res => res.json());
+    login(phone, password) {
+        console.log('login=>', `${BASE_URL}/login/phone/${phone}/password/${password}`);
+        return this.http.get(`${BASE_URL}/login/phone/${phone}/password/${password}`).map(res => res.json());
     }
 
-    post(method: string, payload: any = {}):any{
-        return this.http.post(`${BASE_URL}/${method}`, payload);
+    auth(token) {
+        console.log('auth=>', `${BASE_URL}/auth/${token}`);
+        return this.http.get(`${BASE_URL}/auth/${token}`).map(res => res.json());
     }
 
-    delete(method: string, payload: any = {}):any{
-        return this.http.delete(`${BASE_URL}/${method}`, payload);
+    upload(invoiceData) {
+        console.log('upload=>', `${BASE_URL}/upload`, JSON.stringify(invoiceData));
+        return this.http.post(`${BASE_URL}/upload`, invoiceData).map(res => res.json());
     }
 
-    put(method: string, payload: any = {}):any{
-        return this.http.put(`${BASE_URL}/${method}`, payload);
-    }
-
-    multipart(method: string, payload: any = {}, file: any):any{
-        let params = new FormData();
-        params.append("file", file);
-        for(let key in payload){
-            params.append(key, payload[key]);
-        }
-        let headers = new Headers();
-
-        headers.append('Content-Type', 'multipart/form-data');
-        return this.http.post(`${BASE_URL}/${method}`, params, headers);
-    }
+    // multipart(method: string, payload: any = {}, file: any): any {
+    //     let params = new FormData();
+    //     params.append("file", file);
+    //     for (let key in payload) {
+    //         params.append(key, payload[key]);
+    //     }
+    //     let headers = new Headers();
+    //
+    //     headers.append('Content-Type', 'multipart/form-data');
+    //     return this.http.post(`${BASE_URL}/${method}`, params, headers);
+    // }
 }

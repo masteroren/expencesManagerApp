@@ -3,13 +3,13 @@ var core_1 = require("@angular/core");
 var page_1 = require("ui/page");
 var element_registry_1 = require("nativescript-angular/element-registry");
 element_registry_1.registerElement("CheckBox", function () { return require("nativescript-checkbox").CheckBox; });
-// Native Script core
+var httpService_1 = require("../shared/services/httpService");
 var cameraModule = require("camera");
-var fs = require("file-system");
 require("nativescript-localstorage");
 var ExpensesComponent = (function () {
-    function ExpensesComponent(page) {
+    function ExpensesComponent(page, httpService) {
         this.page = page;
+        this.httpService = httpService;
         page.actionBar.title = 'Expenses Manager';
         var user = localStorage.getItem('user');
         if (user) {
@@ -62,14 +62,21 @@ var ExpensesComponent = (function () {
         });
     };
     ExpensesComponent.prototype.add = function (amount) {
+        var _this = this;
         var checkedItems = this.recipeTypes.filter(function (item) {
             return item.checked;
         });
-        if (checkedItems.length !== 0 && amount !== '') {
-            cameraModule.takePicture({ width: 50, height: 50, keepAspectRatio: false, saveToGallery: true }).then(function (picture) {
-                // this.httpService.get('upload', {})
-                //     .subscribe(response => {
-                //     });
+        if (checkedItems.length === 1 && amount !== '') {
+            cameraModule.takePicture({ width: 50, height: 50, keepAspectRatio: true }).then(function (picture) {
+                _this.httpService.upload({
+                    user: _this.userName,
+                    category: checkedItems[0].text,
+                    amount: amount,
+                })
+                    .subscribe(function (response) {
+                    console.log(response.invoices);
+                    console.log(response.message);
+                });
             });
         }
     };
@@ -92,31 +99,12 @@ var ExpensesComponent = (function () {
     ExpensesComponent = __decorate([
         core_1.Component({
             selector: 'app-expenses',
-            templateUrl: "expenses/expenses.component.html"
+            templateUrl: "expenses/expenses.component.html",
+            providers: [httpService_1.HttpService]
         }), 
-        __metadata('design:paramtypes', [page_1.Page])
+        __metadata('design:paramtypes', [page_1.Page, httpService_1.HttpService])
     ], ExpensesComponent);
     return ExpensesComponent;
 }());
 exports.ExpensesComponent = ExpensesComponent;
-// var cameraModule = require('camera');
-//
-// var some_url="http://somesite";
-// // img is a image source
-// cameraModule.takePicture().then(function (img) {
-//     // You can use "jpeg" or "png".   Apparently "png" doesn't work in some
-//     // cases on iOS.
-//     var imageData = img.toBase64String("jpeg");
-//
-//     http.request({
-//         url: some_url,
-//         method: "POST",
-//         headers: { "Content-Type": "application/base64" },
-//         content: imageData
-//     }).then(function() {
-//         console.log("Woo Hoo, we sent our image up to the server!");
-//     }).catch(function(e) {
-//         console.log("Uh oh, something went wrong", e);
-//     });
-// });
 //# sourceMappingURL=expenses.component.js.map

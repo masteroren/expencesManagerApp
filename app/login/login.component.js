@@ -18,6 +18,9 @@ var LoginComponent = (function () {
             this.showLogin = false;
         }
     }
+    LoginComponent.prototype.ngOnInit = function () {
+        this.page.actionBarHidden = true;
+    };
     Object.defineProperty(LoginComponent.prototype, "userName", {
         get: function () {
             var user = localStorage.getItem('user');
@@ -38,14 +41,22 @@ var LoginComponent = (function () {
             this.showLogin = false;
         }
     };
-    LoginComponent.prototype.onTap = function (phone, pass) {
+    LoginComponent.prototype.logOff = function () {
+        localStorage.removeItem('user');
+        this.showLogin = true;
+    };
+    LoginComponent.prototype.onTap = function (phone, password) {
         var _this = this;
-        this.httpService.get('login', { phone: phone, password: pass })
+        this.httpService.login(phone.text, password.text)
             .subscribe(function (response) {
-            localStorage.setItem('token', response.user.token);
-            _this.httpService.get('auth', { token: response.user.token })
+            phone.text = '';
+            password.text = '';
+            localStorage.setItem('token', response.token);
+            console.log(response.token);
+            _this.httpService.auth(response.token)
                 .subscribe(function (response) {
-                localStorage.setItem('user', JSON.stringify(response));
+                console.log(response.user.name);
+                localStorage.setItem('user', JSON.stringify(response.user));
                 _this.showLogin = false;
                 _this.routerExtensions.navigate(["/expenses"], {
                     transition: {
@@ -54,8 +65,9 @@ var LoginComponent = (function () {
                 });
             });
         }, function (error) {
+            console.log('Login error => ', error);
             dialogs.alert({
-                message: 'Login error'
+                message: error.message
             });
         });
     };

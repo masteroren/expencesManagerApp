@@ -2,12 +2,13 @@
     <StackLayout *ngIf="showLogin" class="login-box">
         <TextField #phone class="width70p" hint="Phone number" [(ngModel)]="phoneNumber"></TextField>
         <TextField #pass class="width70p" hint="Password" [(ngModel)]="password" secure="true"></TextField>
-        <Button class="btn login-btn" text="Login" (tap)="onTap(phone.text, pass.text)"></Button>
+        <Button class="btn login-btn" text="Login" (tap)="onTap(phone, pass)"></Button>
     </StackLayout>
 
     <StackLayout *ngIf="!showLogin" class="login-box">
         <Label text="Hello {{ userName }}" fontSize="30" class="width70p"></Label>
         <Button text="Expenses" [nsRouterLink]="['/expenses']" class="width70p"></Button>
+        <Button text="Log Off" (tap)="logOff()"></Button>
     </StackLayout>
 </StackLayout>
 

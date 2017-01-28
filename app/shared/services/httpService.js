@@ -4,44 +4,22 @@ var http_1 = require("@angular/http");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/toPromise");
-var BASE_URL = 'http://192.168.1.5:3030';
+var BASE_URL = 'http://expensesrest.orenwebtest.com';
 var HttpService = (function () {
     function HttpService(http) {
         this.http = http;
     }
-    HttpService.prototype.get = function (method, payload) {
-        if (payload === void 0) { payload = {}; }
-        var params = new http_1.URLSearchParams();
-        for (var key in payload) {
-            params.set(key, payload[key]);
-        }
-        return this.http.get(BASE_URL + "/" + method, {
-            search: params
-        })
-            .map(function (res) { return res.json(); });
+    HttpService.prototype.login = function (phone, password) {
+        console.log('login=>', BASE_URL + "/login/phone/" + phone + "/password/" + password);
+        return this.http.get(BASE_URL + "/login/phone/" + phone + "/password/" + password).map(function (res) { return res.json(); });
     };
-    HttpService.prototype.post = function (method, payload) {
-        if (payload === void 0) { payload = {}; }
-        return this.http.post(BASE_URL + "/" + method, payload);
+    HttpService.prototype.auth = function (token) {
+        console.log('auth=>', BASE_URL + "/auth/" + token);
+        return this.http.get(BASE_URL + "/auth/" + token).map(function (res) { return res.json(); });
     };
-    HttpService.prototype.delete = function (method, payload) {
-        if (payload === void 0) { payload = {}; }
-        return this.http.delete(BASE_URL + "/" + method, payload);
-    };
-    HttpService.prototype.put = function (method, payload) {
-        if (payload === void 0) { payload = {}; }
-        return this.http.put(BASE_URL + "/" + method, payload);
-    };
-    HttpService.prototype.multipart = function (method, payload, file) {
-        if (payload === void 0) { payload = {}; }
-        var params = new FormData();
-        params.append("file", file);
-        for (var key in payload) {
-            params.append(key, payload[key]);
-        }
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'multipart/form-data');
-        return this.http.post(BASE_URL + "/" + method, params, headers);
+    HttpService.prototype.upload = function (invoiceData) {
+        console.log('upload=>', BASE_URL + "/upload", JSON.stringify(invoiceData));
+        return this.http.post(BASE_URL + "/upload", invoiceData).map(function (res) { return res.json(); });
     };
     HttpService = __decorate([
         core_1.Injectable(), 
