@@ -4,9 +4,12 @@ import {NativeScriptRouterModule} from "nativescript-angular/router";
 import {NativeScriptHttpModule} from "nativescript-angular/http";
 
 import {AppComponent} from "./app.component";
-import {routes} from "./app.routing";
-import {LoginModule} from "./login/login.module";
 import {ExpensesModule} from "./expenses/expenses.module";
+import {WelcomeModule} from "./welcome/welcome.module";
+
+// import {appRoutes} from "./app.routing";
+import {ExpensesComponent} from "./expenses/expenses.component";
+import {WelcomeComponent} from "./welcome/welcome.component";
 
 @NgModule({
     declarations: [AppComponent],
@@ -14,10 +17,24 @@ import {ExpensesModule} from "./expenses/expenses.module";
     imports: [
         NativeScriptModule,
         NativeScriptRouterModule,
-        NativeScriptRouterModule.forRoot(routes),
+        NativeScriptRouterModule.forRoot([
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: '/welcome'
+            },
+            {
+                path: 'welcome',
+                component: WelcomeComponent
+            },
+            {
+                path: 'expenses',
+                component: ExpensesComponent
+            }
+        ]),
         NativeScriptHttpModule,
-        LoginModule,
-        ExpensesModule
+        WelcomeModule,
+        ExpensesModule,
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })

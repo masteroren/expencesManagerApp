@@ -1,0 +1,12 @@
+<StackLayout *ngIf="!userIn" class="welcome">
+    <ListPicker #employeesList class="welcome-list" [items]="list" verticalAlignment="center">
+        <!--<template let-item="item">-->
+        <!--<Label [text]="item.name"></Label>-->
+        <!--</template>-->
+    </ListPicker>
+    <Button class="exp-btn" text="Start" (tap)="go()"></Button>
+</StackLayout>
+
+<StackLayout *ngIf="userIn">
+    <Button text="Back to expenses" [nsRouterLink]="['/expenses']"></Button>
+</StackLayout>

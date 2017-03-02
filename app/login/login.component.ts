@@ -54,36 +54,36 @@ export class LoginComponent {
     }
 
     onTap(phone, password) {
-        this.httpService.login(phone.text, password.text)
-
-            .subscribe(response => {
-                phone.text = '';
-                password.text = '';
-
-                localStorage.setItem('token', response.token);
-
-                console.log(response.token);
-
-                this.httpService.auth(response.token)
-                    .subscribe(response => {
-
-                        console.log(response.user.name);
-
-                        localStorage.setItem('user', JSON.stringify(response.user));
-                        this.showLogin = false;
-
-                        this.routerExtensions.navigate(["/expenses"], {
-                            transition: {
-                                name: "flip"
-                            }
-                        });
-                    });
-
-            }, error => {
-                console.log('Login error => ', error);
-                dialogs.alert({
-                    message: error.message
-                })
-            });
+        // this.httpService.login(phone.text, password.text)
+        //
+        //     .subscribe(response => {
+        //         phone.text = '';
+        //         password.text = '';
+        //
+        //         localStorage.setItem('token', response.token);
+        //
+        //         console.log(response.token);
+        //
+        //         this.httpService.auth(response.token)
+        //             .subscribe(response => {
+        //
+        //                 console.log(response.user.name);
+        //
+        //                 localStorage.setItem('user', JSON.stringify(response.user));
+        //                 this.showLogin = false;
+        //
+        //                 this.routerExtensions.navigate(["/expenses"], {
+        //                     transition: {
+        //                         name: "flip"
+        //                     }
+        //                 });
+        //             });
+        //
+        //     }, error => {
+        //         console.log('Login error => ', error);
+        //         dialogs.alert({
+        //             message: 'Login error'
+        //         })
+        //     });
     }
 }
