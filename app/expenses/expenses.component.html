@@ -1,63 +1,65 @@
-<ActionBar title="Expenses Manager">
-    <NavigationButton text="Go Back" android.systemIcon="ic_menu_back"></NavigationButton>
-</ActionBar>
-<StackLayout class="expenses-wrapper">
-    <Label class="width70p" fontSize="20" width="150" height="50" horizontalAlignment="center"
-           text="Hello {{userName}}"></Label>
-
-
-    <StackLayout>
-        <GridLayout rows="60" columns="40,10,40,10,40,10,40" class="exp-types" horizontalAlignment="center">
-            <StackLayout row="0" col="0" class="exp-type" borderWidth="2" borderColor="#6495ed">
-                <Image src="res://car-icon"></Image>
-                <Label text="חניה" horizontalAlignment="center"></Label>
+<StackLayout class="expenses-wrapper" horizontalAlignment="center">
+    <StackLayout marginTop="15">
+        <FlexboxLayout justifyContent="space-between">
+            <StackLayout #parking class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%"
+                         (tap)="onParkingTap()">
+                <StackLayout ignment="center" width="30" marginTop="3">
+                    <Image src="res://car_icon"></Image>
+                    <Label text="חניה" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
+                </StackLayout>
             </StackLayout>
-            <StackLayout row="0" col="1"></StackLayout>
-            <StackLayout row="0" col="2" class="exp-type" borderWidth="2" borderColor="#6495ed">
-                <Image src="res://travel-icon"></Image>
-                <Label text="נסיעה" horizontalAlignment="center"></Label>
+            <StackLayout #driving class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%"
+                         (tap)="onDrivingTap()">
+                <StackLayout horizontalAlignment="center" width="30" marginTop="3">
+                    <Image src="res://travel_icon"></Image>
+                    <Label text="נסיעה" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
+                </StackLayout>
             </StackLayout>
-            <StackLayout row="0" col="3"></StackLayout>
-            <StackLayout row="0" col="4" class="exp-type" borderWidth="2" borderColor="#6495ed">
-                <Image src="res://food-icon"></Image>
-                <Label text="כיבוד" horizontalAlignment="center"></Label>
+            <StackLayout #food class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%" (tap)="onFoodTap()">
+                <StackLayout horizontalAlignment="center" width="30" marginTop="3">
+                    <Image src="res://food_icon"></Image>
+                    <Label text="כיבוד" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
+                </StackLayout>
             </StackLayout>
-            <StackLayout row="0" col="5"></StackLayout>
-            <StackLayout row="0" col="6" class="exp-type" borderWidth="2" borderColor="#6495ed">
-                <Image></Image>
-                <Label text="אחר" horizontalAlignment="center" ></Label>
+            <StackLayout #other class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%" (tap)="onOtherTap()">
+                <StackLayout horizontalAlignment="center" width="30" marginTop="3">
+                    <Image></Image>
+                    <Label text="אחר" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
+                </StackLayout>
             </StackLayout>
-        </GridLayout>
+        </FlexboxLayout>
     </StackLayout>
 
+    <StackLayout marginTop="10">
+        <StackLayout>
+            <Label text="סכום" fontSize="12"></Label>
+        </StackLayout>
+        <StackLayout marginTop="5" horizontalAlignment="right">
+            <flexbox-layout>
+                <Label text="ש''ח" marginRight="10" marginTop="3"></Label>
+                <TextField #amount hint="הזן סכום..." borderColor="black" borderWidth="1" width="20%" height="40"
+                           fontSize="15"></TextField>
+            </flexbox-layout>
+        </StackLayout>
+    </StackLayout>
 
-    <!--<GridLayout columns="120,120" rows="25,25" class="width70p">-->
-        <!--<DockLayout row="0" col="0" orientation="vertical">-->
-            <!--<Checkbox #food text="{{recipeTypes[0].text}}" checked="false"></Checkbox>-->
-        <!--</DockLayout>-->
+    <StackLayout marginTop="5" horizontalAlignment="right">
+        <StackLayout height="120">
+            <Label text="תאריך החשבונית" fontSize="12"></Label>
+            <DatePicker #invoiceDate [minDate]="minDate"></DatePicker>
+            <Label text="התאריך שרשום על הקבלה"></Label>
+        </StackLayout>
+        <StackLayout height="40">
+            <Label text="תאריך הגשת ההוצאה" fontSize="12"></Label>
+            <Label #inputDate Text="{{getDate()}}" horizontalAlignment="right" backgroundColor="#d3d3d3" marginTop="5"
+                   borderColor="black" borderWidth="1" fontSize="12" width="100" height="20"
+                   class="text-center"></Label>
+        </StackLayout>
+    </StackLayout>
 
-        <!--<DockLayout row="0" col="1" orientation="vertical">-->
-            <!--<Checkbox #parking text="{{recipeTypes[1].text}}" checked="false"></Checkbox>-->
-        <!--</DockLayout>-->
+    <StackLayout marginTop="5">
+        <Label text="צילום הקבלה" fontSize="12"></Label>
+        <Image [src]="imageSrc" height="100" (tap)="add(amount.text)" borderColor="black" borderWidth="1"></Image>
+    </StackLayout>
 
-        <!--<DockLayout row="1" col="0" orientation="vertical">-->
-            <!--<Checkbox #driving text="{{recipeTypes[2].text}}" checked="false"></Checkbox>-->
-        <!--</DockLayout>-->
-
-        <!--<DockLayout row="1" col="1" orientation="vertical">-->
-            <!--<Checkbox #other text="{{recipeTypes[3].text}}" checked="false"></Checkbox>-->
-        <!--</DockLayout>-->
-    <!--</GridLayout>-->
-
-    <TextField #amount class="width70p" hint="Amount (NIS)"></TextField>
-
-    <GridLayout columns="100,100" rows="70" width="210">
-        <Button row="0" col="0" class="exp-btn" width="100" text="Clear"
-                (tap)="amount.text = ''; clear()"></Button>
-        <Button row="0" col="1" class="exp-btn" width="100" text="Add" (tap)="add(amount.text)"></Button>
-    </GridLayout>
-
-    <Button class="exp-btn" text="Log Out" (tap)="logOut()"></Button>
-
-    <Image [src]="imageSrc" width="100" height="100"></Image>
 </StackLayout>

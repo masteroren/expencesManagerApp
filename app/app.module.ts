@@ -1,3 +1,6 @@
+
+import "rxjs/Rx";
+
 import {NgModule, NO_ERRORS_SCHEMA} from "@angular/core";
 import {NativeScriptModule} from "nativescript-angular/platform";
 import {NativeScriptRouterModule} from "nativescript-angular/router";

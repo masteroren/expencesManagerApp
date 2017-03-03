@@ -2,6 +2,7 @@ import {IEmployee} from "../shared/interfaces/employee";
 import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
 import {HttpService} from "../shared/services/httpService";
 import {RouterExtensions} from "nativescript-angular";
+import {Page} from "ui/page";
 
 @Component({
     selector: 'welcome',
@@ -19,7 +20,8 @@ export class WelcomeComponent implements OnInit {
 
     @ViewChild('employeesList') employeesList: ElementRef;
 
-    constructor(private httpService: HttpService, private routerExtensions: RouterExtensions) {
+    constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
+        page.actionBarHidden = true;
         let employee = localStorage.getItem('employee');
         if (employee){
             this.routerExtensions.navigate(["/expenses"], {
@@ -30,13 +32,23 @@ export class WelcomeComponent implements OnInit {
         }
     }
 
+
     ngOnInit() {
-        this.httpService.users().subscribe((data: IEmployee[]) => {
-            data.forEach((employee: IEmployee) => {
-                this.list = [...this.list, employee.name];
-                this.employees = [...this.employees, employee];
-            });
+        this.httpService.users().then((data: IEmployee[]) => {
+                data.forEach((employee: IEmployee) => {
+                    this.list = [...this.list, employee.name];
+                    this.employees = [...this.employees, employee];
+                });
+        }, err => {
+
         });
+
+        // this.httpService.users().subscribe((data: IEmployee[]) => {
+        //     data.forEach((employee: IEmployee) => {
+        //         this.list = [...this.list, employee.name];
+        //         this.employees = [...this.employees, employee];
+        //     });
+        // });
     }
 
     go() {
