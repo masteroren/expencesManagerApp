@@ -1,8 +1,5 @@
 <StackLayout *ngIf="!userIn" class="welcome">
-    <ListPicker #employeesList class="welcome-list" [items]="list" verticalAlignment="center">
-        <!--<template let-item="item">-->
-        <!--<Label [text]="item.name"></Label>-->
-        <!--</template>-->
+    <ListPicker #employeesList [items]="list" verticalAlignment="center" height="150">
     </ListPicker>
     <Button class="exp-btn" text="Start" (tap)="go()"></Button>
 </StackLayout>

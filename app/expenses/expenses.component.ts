@@ -24,7 +24,6 @@ require("nativescript-localstorage");
     providers: [HttpService]
 })
 export class ExpensesComponent implements OnInit {
-    // recipeTypes: Array<RecipeType>;
     userName: string;
     imageSrc: any;
 
@@ -40,6 +39,7 @@ export class ExpensesComponent implements OnInit {
     @ViewChild("driving") driving: ElementRef;
     @ViewChild("other") other: ElementRef;
     @ViewChild("invoiceDate") invoiceDate: ElementRef;
+    @ViewChild("amount") amount: ElementRef;
 
     constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
         page.actionBarHidden = true;
@@ -49,38 +49,11 @@ export class ExpensesComponent implements OnInit {
         }
     }
 
-    getDate(){
-        return new Date().toDateString();
+    ngOnInit() {
     }
 
-    ngOnInit() {
-        // this.recipeTypes = [{
-        //     index: 0,
-        //     text: 'Food',
-        //     checked: false,
-        //     element: this.foodCheckBox
-        // }, {
-        //     index: 1,
-        //     text: 'Parking',
-        //     checked: false,
-        //     element: this.parkingCheckBox
-        // }, {
-        //     index: 2,
-        //     text: 'Driving',
-        //     checked: false,
-        //     element: this.drivingCheckBox
-        // }, {
-        //     index: 3,
-        //     text: 'Other',
-        //     checked: false,
-        //     element: this.otherCheckBox
-        // }];
-
-        // this.recipeTypes.forEach(item => {
-        //     this.recipeTypes[item.index].element.nativeElement.on('tap', () => {
-        //         this.onTapCheckBox(item.index);
-        //     })
-        // });
+    getDate(){
+        return new Date().toDateString();
     }
 
     private resetAll() {
@@ -118,21 +91,9 @@ export class ExpensesComponent implements OnInit {
         this.category = 'Other';
     }
 
-    onTapCheckBox(index: number) {
-        // this.recipeTypes.forEach(item => {
-        //     if (item.index !== index) {
-        //         this.recipeTypes[item.index].element.nativeElement.checked = false;
-        //         this.recipeTypes[item.index].checked = false;
-        //     }
-        // });
-        // this.recipeTypes[index].checked = true;
-    }
-
     clear() {
-        // this.recipeTypes.forEach(item => {
-        //     item.checked = false;
-        //     item.element.nativeElement.checked = false;
-        // })
+        this.resetAll();
+        this.amount.nativeElement.text = '';
     }
 
     add(amount) {

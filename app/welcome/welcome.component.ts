@@ -22,33 +22,27 @@ export class WelcomeComponent implements OnInit {
 
     constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
         page.actionBarHidden = true;
+    }
+
+
+    ngOnInit() {
+
         let employee = localStorage.getItem('employee');
-        if (employee){
+        if (employee) {
             this.routerExtensions.navigate(["/expenses"], {
                 transition: {
                     name: "flip"
                 }
             });
+        } else {
+            this.httpService.users().then((data: IEmployee[]) => {
+                this.list = data.map((employee: IEmployee) => {return employee.name});
+                this.employees = data;
+                console.log(this.list);
+            }, err => {
+                console.log(err);
+            });
         }
-    }
-
-
-    ngOnInit() {
-        this.httpService.users().then((data: IEmployee[]) => {
-                data.forEach((employee: IEmployee) => {
-                    this.list = [...this.list, employee.name];
-                    this.employees = [...this.employees, employee];
-                });
-        }, err => {
-
-        });
-
-        // this.httpService.users().subscribe((data: IEmployee[]) => {
-        //     data.forEach((employee: IEmployee) => {
-        //         this.list = [...this.list, employee.name];
-        //         this.employees = [...this.employees, employee];
-        //     });
-        // });
     }
 
     go() {
