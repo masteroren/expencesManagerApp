@@ -108,11 +108,12 @@ export class ExpensesComponent implements OnInit {
             let base64img = imageSource.toBase64String("jpg");
 
             this.httpService.upload({
-                user: this.userName,
-                category: this.category,
+                empName: this.userName,
+                type: this.category,
                 amount: amount,
                 invoiceDate: invDate.toISOString(),
-                picture: base64img
+                createDate: new Date().toISOString(),
+                image: base64img
             }).then(response => {
                 let result = response.content.toJSON();
                 console.log(result);
