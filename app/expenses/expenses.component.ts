@@ -13,6 +13,7 @@ import fsModule = require("file-system");
 import {RouterExtensions} from "nativescript-angular";
 import {Color} from "color";
 import {DatePicker} from "ui/date-picker";
+import {IEmployee} from "../shared/interfaces/IEmployee";
 
 let colorModule = require("color");
 
@@ -24,13 +25,13 @@ require("nativescript-localstorage");
     providers: [HttpService]
 })
 export class ExpensesComponent implements OnInit {
-    userName: string;
+    employee: IEmployee;
     imageSrc: any;
 
     expTypeIndex: number;
     category: string;
 
-    minDate: Date = new Date(2000,0,1);
+    minDate: Date = new Date(2000, 0, 1);
 
     defaultTypeColor: Color = new colorModule.Color('white');
 
@@ -43,16 +44,16 @@ export class ExpensesComponent implements OnInit {
 
     constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
         page.actionBarHidden = true;
-        let employee = localStorage.getItem('employee');
-        if (employee) {
-            this.userName = JSON.parse(employee).name;
-        }
     }
 
     ngOnInit() {
+        if (localStorage.getItem('employee')) {
+            this.employee = JSON.parse(localStorage.getItem('employee'));
+            console.log('employee => ', this.employee.name);
+        }
     }
 
-    getDate(){
+    getDate() {
         return new Date().toDateString();
     }
 
@@ -106,20 +107,21 @@ export class ExpensesComponent implements OnInit {
             this.imageSrc = imageSource;
 
             let base64img = imageSource.toBase64String("jpg");
+            let currentDate = new Date();
+
+            console.log('employee name => ', this.employee.name);
 
             this.httpService.upload({
-                empName: this.userName,
+                empName: this.employee.name,
                 type: this.category,
                 amount: amount,
-                invoiceDate: invDate.toISOString(),
-                createDate: new Date().toISOString(),
+                invoiceDate: invDate.getTime(),
+                createDate: currentDate.getTime(),
                 image: base64img
-            }).then(response => {
-                let result = response.content.toJSON();
-                console.log(result);
-            }, e => {
-                console.log("Error occurred " + e);
-            })
+            }).subscribe(data => {
+                console.log(data);
+            });
+
         });
     }
 

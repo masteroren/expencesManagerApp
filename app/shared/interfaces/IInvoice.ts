@@ -3,7 +3,7 @@ export interface IInvoice{
     empName: string;
     type: string;
     amount: number;
-    invoiceDate: string;
-    createDate: string;
+    invoiceDate: number;
+    createDate: number;
     image: any;
 }

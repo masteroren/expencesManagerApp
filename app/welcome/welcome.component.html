@@ -1,7 +1,12 @@
 <StackLayout *ngIf="!userIn" class="welcome">
-    <ListPicker #employeesList [items]="list" verticalAlignment="center" height="150">
-    </ListPicker>
-    <Button class="exp-btn" text="Start" (tap)="go()"></Button>
+    <ListView [items]="employees" verticalAlignment="center" height="100" (itemTap)="onItemTap($event)">
+        <template let-employee="item" let-i="index">
+            <GridLayout columns="20, *">
+                <Label col="0" [text]="employee.id"></Label>
+                <Label col="1" [text]="employee.name"></Label>
+            </GridLayout>
+        </template>
+    </ListView>
 </StackLayout>
 
 <StackLayout *ngIf="userIn">

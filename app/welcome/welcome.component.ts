@@ -1,5 +1,5 @@
-import {IEmployee} from "../shared/interfaces/employee";
-import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
+import {IEmployee} from "../shared/interfaces/IEmployee";
+import {Component, OnInit} from "@angular/core";
 import {HttpService} from "../shared/services/httpService";
 import {RouterExtensions} from "nativescript-angular";
 import {Page} from "ui/page";
@@ -14,19 +14,12 @@ import {Page} from "ui/page";
 export class WelcomeComponent implements OnInit {
 
     private employees: IEmployee[] = [];
-    public list: string[] = [];
-
-    private userIn: boolean;
-
-    @ViewChild('employeesList') employeesList: ElementRef;
 
     constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
         page.actionBarHidden = true;
     }
 
-
     ngOnInit() {
-
         let employee = localStorage.getItem('employee');
         if (employee) {
             this.routerExtensions.navigate(["/expenses"], {
@@ -35,18 +28,14 @@ export class WelcomeComponent implements OnInit {
                 }
             });
         } else {
-            this.httpService.users().then((data: IEmployee[]) => {
-                this.list = data.map((employee: IEmployee) => {return employee.name});
-                this.employees = data;
-                console.log(this.list);
-            }, err => {
-                console.log(err);
+            this.httpService.users().subscribe(data => {
+                this.employees = data.json();
             });
         }
     }
 
-    go() {
-        let index = this.employeesList.nativeElement.selectedIndex;
+    onItemTap(args) {
+        let index = args.index
         let employee = this.employees[index];
         if (employee) {
             localStorage.setItem('employee', JSON.stringify(employee));

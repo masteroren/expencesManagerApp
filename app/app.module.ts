@@ -1,4 +1,3 @@
-
 import "rxjs/Rx";
 
 import {NgModule, NO_ERRORS_SCHEMA} from "@angular/core";
@@ -10,7 +9,6 @@ import {AppComponent} from "./app.component";
 import {ExpensesModule} from "./expenses/expenses.module";
 import {WelcomeModule} from "./welcome/welcome.module";
 
-// import {appRoutes} from "./app.routing";
 import {ExpensesComponent} from "./expenses/expenses.component";
 import {WelcomeComponent} from "./welcome/welcome.component";
 
