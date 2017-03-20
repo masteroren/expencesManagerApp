@@ -58,9 +58,14 @@
         </StackLayout>
     </StackLayout>
 
-    <StackLayout marginTop="5">
+    <StackLayout marginTop="5" *ngIf="cameraAvailable">
         <Label text="צילום הקבלה" fontSize="12"></Label>
         <Image [src]="imageSrc" height="100" (tap)="add(amount.text)" borderColor="black" borderWidth="1"></Image>
+    </StackLayout>
+
+    <StackLayout marginTop="5" *ngIf="!cameraAvailable">
+        <Label text="המצלמה לא זמינה" color="red"></Label>
+        <Button text="שלח"></Button>
     </StackLayout>
 
 </StackLayout>

@@ -27,6 +27,7 @@ export class ExpensesComponent implements OnInit {
     category: string;
     minDate: Date = new Date();
     defaultTypeColor: Color = new colorModule.Color('white');
+    cameraAvailable: Boolean = cameraModule.isAvailable();
 
     @ViewChild("food") food: ElementRef;
     @ViewChild("parking") parking: ElementRef;
