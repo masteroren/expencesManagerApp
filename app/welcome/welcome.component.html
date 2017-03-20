@@ -1,5 +1,5 @@
 <StackLayout *ngIf="!userIn" class="welcome">
-    <ListView [items]="employees" verticalAlignment="center" height="100" (itemTap)="onItemTap($event)">
+    <ListView [items]="employees" verticalAlignment="center" height="90" (itemTap)="onItemTap($event)">
         <template let-employee="item" let-i="index">
             <GridLayout columns="20, *">
                 <Label col="0" [text]="employee.id"></Label>
@@ -7,6 +7,11 @@
             </GridLayout>
         </template>
     </ListView>
+
+    <!--<FlexboxLayout justifyContent="flex-start">-->
+        <!--<Switch [checked]="rememberMe"></Switch>-->
+        <!--<Label text="remember me"></Label>-->
+    <!--</FlexboxLayout>-->
 </StackLayout>
 
 <StackLayout *ngIf="userIn">

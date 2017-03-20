@@ -31,7 +31,7 @@ export class ExpensesComponent implements OnInit {
     expTypeIndex: number;
     category: string;
 
-    minDate: Date = new Date(2000, 0, 1);
+    minDate: Date = new Date();
 
     defaultTypeColor: Color = new colorModule.Color('white');
 
