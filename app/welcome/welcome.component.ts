@@ -14,7 +14,6 @@ import {Page} from "ui/page";
 export class WelcomeComponent implements OnInit {
 
     private employees: IEmployee[] = [];
-    private rememberMe: boolean = false;
 
     constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
         page.actionBarHidden = true;
@@ -39,11 +38,7 @@ export class WelcomeComponent implements OnInit {
         let index = args.index;
         let employee = this.employees[index];
         if (employee) {
-            if (this.rememberMe){
-                localStorage.setItem('employee', JSON.stringify(employee));
-            } else {
-                localStorage.clear();
-            }
+            localStorage.setItem('employee', JSON.stringify(employee));
 
             this.routerExtensions.navigate(["/expenses"], {
                 transition: {
