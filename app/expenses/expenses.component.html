@@ -65,7 +65,7 @@
 
     <StackLayout marginTop="5" *ngIf="!cameraAvailable">
         <Label text="המצלמה לא זמינה" color="red"></Label>
-        <Button text="שלח"></Button>
+        <Button text="שלח" (tap)="add(amount.text)"></Button>
     </StackLayout>
 
 </StackLayout>

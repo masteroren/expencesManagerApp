@@ -89,28 +89,31 @@ export class ExpensesComponent implements OnInit {
     }
 
     add(amount) {
+        if (this.cameraAvailable){
+            cameraModule.takePicture({width: 50, height: 50, keepAspectRatio: true}).then(imageSource => {
+                this.imageSrc = imageSource;
+                let base64img = imageSource.toBase64String("jpg");
+                this.uploadInvoice(amount, base64img);
+            });
+        } else {
+            this.uploadInvoice(amount, '');
+        }
+    }
 
+    private uploadInvoice(amount, img){
         let datePicker = <DatePicker>this.invoiceDate.nativeElement;
         let invDate = datePicker.date ? datePicker.date : this.minDate;
+        let currentDate = new Date();
 
-        cameraModule.takePicture({width: 50, height: 50, keepAspectRatio: true}).then(imageSource => {
-
-            this.imageSrc = imageSource;
-
-            let base64img = imageSource.toBase64String("jpg");
-            let currentDate = new Date();
-
-            this.httpService.upload({
-                empName: this.employee.name,
-                type: this.category,
-                amount: amount,
-                invoiceDate: invDate.getTime(),
-                createDate: currentDate.getTime(),
-                image: base64img
-            }).subscribe(data => {
-                console.log(data);
-            });
-
+        this.httpService.upload({
+            empName: this.employee.name,
+            type: this.category,
+            amount: amount,
+            invoiceDate: invDate.getTime(),
+            createDate: currentDate.getTime(),
+            image: img
+        }).subscribe(data => {
+            console.log(data);
         });
     }
 
