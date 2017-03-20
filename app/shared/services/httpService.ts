@@ -18,4 +18,8 @@ export class HttpService {
     upload(invoiceData: IInvoice) {
         return this.http.post(`${BASE_URL}upload`, invoiceData);
     }
+
+    expensesTypes(){
+        return this.http.get(`${BASE_URL}expTypes`);
+    }
 }

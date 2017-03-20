@@ -1,19 +1,16 @@
 import {Component, ViewChild, ElementRef, OnInit} from "@angular/core";
 import {Page} from "ui/page";
-import {CheckBox} from 'nativescript-checkbox';
-import {registerElement} from "nativescript-angular/element-registry";
-registerElement("CheckBox", () => require("nativescript-checkbox").CheckBox);
 import {HttpService} from "../shared/services/httpService";
 
 // Native Script core
-import imageModule = require("ui/image");
 import cameraModule = require("camera");
-import enumsModule  = require('ui/enums')
-import fsModule = require("file-system");
 import {RouterExtensions} from "nativescript-angular";
 import {Color} from "color";
 import {DatePicker} from "ui/date-picker";
 import {IEmployee} from "../shared/interfaces/IEmployee";
+import {IRecipeType} from "../shared/interfaces/IRecipeType";
+import {Observable} from "rxjs";
+import {ObservableArray} from "data/observable-array";
 
 let colorModule = require("color");
 
@@ -27,12 +24,8 @@ require("nativescript-localstorage");
 export class ExpensesComponent implements OnInit {
     employee: IEmployee;
     imageSrc: any;
-
-    expTypeIndex: number;
     category: string;
-
     minDate: Date = new Date();
-
     defaultTypeColor: Color = new colorModule.Color('white');
 
     @ViewChild("food") food: ElementRef;
@@ -49,7 +42,6 @@ export class ExpensesComponent implements OnInit {
     ngOnInit() {
         if (localStorage.getItem('employee')) {
             this.employee = JSON.parse(localStorage.getItem('employee'));
-            console.log('employee => ', this.employee.name);
         }
     }
 
@@ -64,31 +56,27 @@ export class ExpensesComponent implements OnInit {
         this.other.nativeElement.backgroundColor = this.defaultTypeColor;
     }
 
-    onParkingTap(index: number) {
+    onParkingTap() {
         this.resetAll();
         this.parking.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.expTypeIndex = index;
         this.category = 'Parking';
     }
 
-    onFoodTap(index: number) {
+    onFoodTap() {
         this.resetAll();
         this.food.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.expTypeIndex = index;
         this.category = 'Food';
     }
 
-    onDrivingTap(index: number) {
+    onDrivingTap() {
         this.resetAll();
         this.driving.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.expTypeIndex = index;
         this.category = 'Driving';
     }
 
-    onOtherTap(index: number) {
+    onOtherTap() {
         this.resetAll();
         this.other.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.expTypeIndex = index;
         this.category = 'Other';
     }
 
@@ -108,8 +96,6 @@ export class ExpensesComponent implements OnInit {
 
             let base64img = imageSource.toBase64String("jpg");
             let currentDate = new Date();
-
-            console.log('employee name => ', this.employee.name);
 
             this.httpService.upload({
                 empName: this.employee.name,
@@ -133,6 +119,9 @@ export class ExpensesComponent implements OnInit {
                 name: "flip"
             }
         });
+    }
+
+    onTap() {
     }
 }
 
