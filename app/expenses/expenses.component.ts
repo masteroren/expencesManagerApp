@@ -8,9 +8,6 @@ import {RouterExtensions} from "nativescript-angular";
 import {Color} from "color";
 import {DatePicker} from "ui/date-picker";
 import {IEmployee} from "../shared/interfaces/IEmployee";
-import {IRecipeType} from "../shared/interfaces/IRecipeType";
-import {Observable} from "rxjs";
-import {ObservableArray} from "data/observable-array";
 
 let colorModule = require("color");
 

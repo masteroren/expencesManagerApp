@@ -22,8 +22,6 @@
     "ie-shim": "^0.1.0",
     "nativescript-angular": "1.2.0",
     "nativescript-background-http": "^2.4.2",
-    "nativescript-checkbox": "^1.2.3",
-    "nativescript-drop-down": "^1.5.2",
     "nativescript-localstorage": "^1.1.0",
     "nativescript-theme-core": "^0.2.1",
     "redux": "^3.6.0",
