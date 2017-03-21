@@ -44,7 +44,6 @@ export class ExpensesComponent implements OnInit {
         if (localStorage.getItem('employee')) {
             this.employee = JSON.parse(localStorage.getItem('employee'));
         }
-
         console.log('camera available => ', cameraModule.isAvailable())
     }
 
