@@ -20,18 +20,19 @@ export class WelcomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        let employee = localStorage.getItem('employee');
-        if (employee) {
-            this.routerExtensions.navigate(["/expenses"], {
-                transition: {
-                    name: "flip"
-                }
-            });
-        } else {
-            this.httpService.users().subscribe(data => {
+        // let employee = localStorage.getItem('employee');
+        // if (employee) {
+        //     this.routerExtensions.navigate(["/expenses"], {
+        //         transition: {
+        //             name: "flip"
+        //         }
+        //     });
+        // } else {
+        this.httpService.users()
+            .subscribe(data => {
                 this.employees = data.json();
             });
-        }
+        // }
     }
 
     onItemTap(args) {
