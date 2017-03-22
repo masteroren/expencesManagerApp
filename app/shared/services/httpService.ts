@@ -13,9 +13,13 @@ export class HttpService {
     constructor(private http: Http) {
     }
 
+    test() {
+        return this.http.get(`${BASE_URL}test`);
+    }
+
     users() {
         return this.http.get(`${BASE_URL}users`);
-            // .map(res => res.json());
+        // .map(res => res.json());
     }
 
     upload(invoiceData: IInvoice) {
