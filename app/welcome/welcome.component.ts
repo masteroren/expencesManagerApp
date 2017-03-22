@@ -27,20 +27,20 @@ export class WelcomeComponent implements OnInit {
         //     });
 
 
-        // let employee = localStorage.getItem('employee');
-        // if (employee) {
-        //     this.routerExtensions.navigate(["/expenses"], {
-        //         transition: {
-        //             name: "flip"
-        //         }
-        //     });
-        // } else {
+        let employee = localStorage.getItem('employee');
+        if (employee) {
+            this.routerExtensions.navigate(["/expenses"], {
+                transition: {
+                    name: "flip"
+                }
+            });
+        } else {
             this.httpService.users()
                 .subscribe(data => {
                     this.employees = data.json();
                     console.log(this.employees);
                 });
-        // }
+        }
     }
 
     onItemTap(args) {
