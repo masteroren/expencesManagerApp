@@ -1,3 +1,4 @@
+import {enableProdMode} from "@angular/core";
 global.process = { env: {} };
 
 // this import should be first in order to load some required settings (like globals and reflect-metadata)
@@ -5,4 +6,5 @@ import { platformNativeScriptDynamic } from "nativescript-angular/platform";
 
 import { AppModule } from "./app.module";
 
+enableProdMode();
 platformNativeScriptDynamic({startPageActionBarHidden: true}).bootstrapModule(AppModule);
