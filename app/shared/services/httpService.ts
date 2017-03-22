@@ -4,7 +4,6 @@ import {Http} from "@angular/http";
 
 import 'rxjs'
 
-// const BASE_URL = 'http://192.168.10.155:8080/';
 const BASE_URL = 'http://212.143.128.217:9200/';
 
 @Injectable()
