@@ -31,6 +31,7 @@ export class WelcomeComponent implements OnInit {
         this.httpService.users()
             .subscribe(data => {
                 this.employees = data.json();
+                console.log(this.employees);
             });
         // }
     }

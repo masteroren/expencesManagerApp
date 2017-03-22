@@ -16,6 +16,7 @@ require("nativescript-localstorage");
 @Component({
     selector: 'app-expenses',
     templateUrl: "expenses/expenses.component.html",
+    styleUrls: ['expenses/expenses.component.css'],
     providers: [HttpService]
 })
 export class ExpensesComponent implements OnInit {
