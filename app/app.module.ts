@@ -9,6 +9,7 @@ import {WelcomeModule} from "./welcome/welcome.module";
 
 import {ExpensesComponent} from "./expenses/expenses.component";
 import {WelcomeComponent} from "./welcome/welcome.component";
+import {FinishComponent} from "./expenses/finish/finish-step.component";
 
 @NgModule({
     declarations: [AppComponent],
@@ -29,6 +30,10 @@ import {WelcomeComponent} from "./welcome/welcome.component";
             {
                 path: 'expenses',
                 component: ExpensesComponent
+            },
+            {
+                path: 'finish/:id',
+                component: FinishComponent
             }
         ]),
         NativeScriptHttpModule,

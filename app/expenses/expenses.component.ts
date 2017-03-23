@@ -5,7 +5,6 @@ import {HttpService} from "../shared/services/httpService";
 // Native Script core
 import cameraModule = require("camera");
 import {RouterExtensions} from "nativescript-angular";
-import {DatePicker} from "ui/date-picker";
 import {IEmployee} from "../shared/interfaces/IEmployee";
 
 require("nativescript-localstorage");
@@ -31,16 +30,12 @@ export class ExpensesComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('init');
         if (localStorage.getItem('employee')) {
             this.employee = JSON.parse(localStorage.getItem('employee'));
         }
         console.log('camera available => ', cameraModule.isAvailable())
     }
-
-    // clear() {
-    //     this.resetAll();
-    //     this.amount.nativeElement.text = '';
-    // }
 
     setAmount(amount) {
         this.amount = amount;
@@ -67,32 +62,32 @@ export class ExpensesComponent implements OnInit {
     }
 
     sendInvoice() {
-        let invDate = this.invoiceDate ? this.invoiceDate : this.minDate;
-        let currentDate = new Date();
+        if (this.valid()) {
+            let invDate = this.invoiceDate ? this.invoiceDate : this.minDate;
+            let currentDate = new Date();
 
-        this.httpService.upload({
-            empName: this.employee.name,
-            type: this.category,
-            amount: this.amount,
-            invoiceDate: invDate.getTime(),
-            createDate: currentDate.getTime(),
-            image: this.base64StringImg
-        }).subscribe(data => {
-            console.log(data);
-        });
+            this.httpService.upload({
+                empName: this.employee.name,
+                type: this.category,
+                amount: this.amount,
+                invoiceDate: invDate.getTime(),
+                createDate: currentDate.getTime(),
+                image: this.base64StringImg
+            }).subscribe(data => {
+                this.routerExtensions.navigate(["/finish", 0], {
+                    transition: {
+                        name: "flip"
+                    }
+                });
+            });
+        } else {
+
+        }
     }
 
-    logOut() {
-        localStorage.removeItem('employee');
-
-        this.routerExtensions.navigate(["/welcome"], {
-            transition: {
-                name: "flip"
-            }
-        });
-    }
-
-    onTap() {
+    valid() {
+        // return this.category && this.amount && this.invoiceDate && this.base64StringImg;
+        return true;
     }
 }
 

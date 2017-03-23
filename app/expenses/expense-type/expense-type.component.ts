@@ -49,7 +49,10 @@ export class ExpenseTypeComponent{
     onOtherTap() {
         this.resetAll();
         this.other.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.onCategoryClick.emit('Other');
         this.showOther = true;
+    }
+
+    setOtherCategory(val){
+        this.onCategoryClick.emit(val);
     }
 }

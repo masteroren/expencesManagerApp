@@ -30,5 +30,5 @@
 </StackLayout>
 
 <StackLayout *ngIf="showOther">
-    <TextField></TextField>
+    <TextField #expenseName (propertyChange)="setOtherCategory(expenseName.text)"></TextField>
 </StackLayout>
