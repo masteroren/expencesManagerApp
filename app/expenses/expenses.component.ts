@@ -5,11 +5,8 @@ import {HttpService} from "../shared/services/httpService";
 // Native Script core
 import cameraModule = require("camera");
 import {RouterExtensions} from "nativescript-angular";
-import {Color} from "color";
 import {DatePicker} from "ui/date-picker";
 import {IEmployee} from "../shared/interfaces/IEmployee";
-
-let colorModule = require("color");
 
 require("nativescript-localstorage");
 
@@ -24,15 +21,10 @@ export class ExpensesComponent implements OnInit {
     imageSrc: any;
     category: string;
     minDate: Date = new Date();
-    defaultTypeColor: Color = new colorModule.Color('white');
     cameraAvailable: Boolean = cameraModule.isAvailable();
-
-    @ViewChild("food") food: ElementRef;
-    @ViewChild("parking") parking: ElementRef;
-    @ViewChild("driving") driving: ElementRef;
-    @ViewChild("other") other: ElementRef;
-    @ViewChild("invoiceDate") invoiceDate: ElementRef;
-    @ViewChild("amount") amount: ElementRef;
+    amount: number;
+    invoiceDate: Date;
+    base64StringImg: string = '';
 
     constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
         page.actionBarHidden = true;
@@ -45,70 +37,46 @@ export class ExpensesComponent implements OnInit {
         console.log('camera available => ', cameraModule.isAvailable())
     }
 
-    getDate() {
-        return new Date().toDateString();
+    // clear() {
+    //     this.resetAll();
+    //     this.amount.nativeElement.text = '';
+    // }
+
+    setAmount(amount) {
+        this.amount = amount;
+        console.log('Amount => ', this.amount);
     }
 
-    private resetAll() {
-        this.driving.nativeElement.backgroundColor = this.defaultTypeColor;
-        this.food.nativeElement.backgroundColor = this.defaultTypeColor;
-        this.parking.nativeElement.backgroundColor = this.defaultTypeColor;
-        this.other.nativeElement.backgroundColor = this.defaultTypeColor;
+    setCategory(e) {
+        this.category = e;
+        console.log('Category selected => ', this.category);
     }
 
-    onParkingTap() {
-        this.resetAll();
-        this.parking.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.category = 'Parking';
+    setDate(date) {
+        this.invoiceDate = date;
+        console.log('Date => ', this.invoiceDate);
     }
 
-    onFoodTap() {
-        this.resetAll();
-        this.food.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.category = 'Food';
-    }
-
-    onDrivingTap() {
-        this.resetAll();
-        this.driving.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.category = 'Driving';
-    }
-
-    onOtherTap() {
-        this.resetAll();
-        this.other.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.category = 'Other';
-    }
-
-    clear() {
-        this.resetAll();
-        this.amount.nativeElement.text = '';
-    }
-
-    add(amount) {
-        if (this.cameraAvailable){
+    takePicture() {
+        if (this.cameraAvailable) {
             cameraModule.takePicture({width: 50, height: 50, keepAspectRatio: true}).then(imageSource => {
                 this.imageSrc = imageSource;
-                let base64img = imageSource.toBase64String("jpg");
-                this.uploadInvoice(amount, base64img);
+                this.base64StringImg = imageSource.toBase64String("jpg");
             });
-        } else {
-            this.uploadInvoice(amount, '');
         }
     }
 
-    private uploadInvoice(amount, img){
-        let datePicker = <DatePicker>this.invoiceDate.nativeElement;
-        let invDate = datePicker.date ? datePicker.date : this.minDate;
+    sendInvoice() {
+        let invDate = this.invoiceDate ? this.invoiceDate : this.minDate;
         let currentDate = new Date();
 
         this.httpService.upload({
             empName: this.employee.name,
             type: this.category,
-            amount: amount,
+            amount: this.amount,
             invoiceDate: invDate.getTime(),
             createDate: currentDate.getTime(),
-            image: img
+            image: this.base64StringImg
         }).subscribe(data => {
             console.log(data);
         });

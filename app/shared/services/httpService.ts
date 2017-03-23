@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {IInvoice} from "../interfaces/IInvoice";
 import {Http} from "@angular/http";
 
-import 'rxjs'
+// import 'rxjs'
 
 const BASE_URL = 'http://212.143.128.217:9200/';
 

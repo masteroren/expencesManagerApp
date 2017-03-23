@@ -5,5 +5,5 @@ export interface IInvoice{
     amount: number;
     invoiceDate: number;
     createDate: number;
-    image: any;
+    image: string;
 }

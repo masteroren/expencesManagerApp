@@ -1,0 +1,34 @@
+<StackLayout marginTop="15">
+    <FlexboxLayout justifyContent="space-between">
+        <StackLayout #parking class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%"
+                     (tap)="onParkingTap()">
+            <StackLayout ignment="center" width="30" marginTop="3">
+                <Image src="res://car_icon"></Image>
+                <Label text="חניה" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout #driving class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%"
+                     (tap)="onDrivingTap()">
+            <StackLayout horizontalAlignment="center" width="30" marginTop="3">
+                <Image src="res://travel_icon"></Image>
+                <Label text="נסיעה" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout #food class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%" (tap)="onFoodTap()">
+            <StackLayout horizontalAlignment="center" width="30" marginTop="3">
+                <Image src="res://food_icon"></Image>
+                <Label text="כיבוד" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout #other class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%" (tap)="onOtherTap()">
+            <StackLayout horizontalAlignment="center" width="30" marginTop="3">
+                <Image></Image>
+                <Label text="אחר" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
+            </StackLayout>
+        </StackLayout>
+    </FlexboxLayout>
+</StackLayout>
+
+<StackLayout *ngIf="showOther">
+    <TextField></TextField>
+</StackLayout>

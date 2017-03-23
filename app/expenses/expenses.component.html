@@ -1,74 +1,22 @@
 <StackLayout class="expenses-wrapper" horizontalAlignment="center">
-    <StackLayout marginTop="15">
-        <FlexboxLayout justifyContent="space-between">
-            <StackLayout #parking class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%"
-                         (tap)="onParkingTap()">
-                <StackLayout ignment="center" width="30" marginTop="3">
-                    <Image src="res://car_icon"></Image>
-                    <Label text="חניה" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
-                </StackLayout>
-            </StackLayout>
-            <StackLayout #driving class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%"
-                         (tap)="onDrivingTap()">
-                <StackLayout horizontalAlignment="center" width="30" marginTop="3">
-                    <Image src="res://travel_icon"></Image>
-                    <Label text="נסיעה" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
-                </StackLayout>
-            </StackLayout>
-            <StackLayout #food class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%" (tap)="onFoodTap()">
-                <StackLayout horizontalAlignment="center" width="30" marginTop="3">
-                    <Image src="res://food_icon"></Image>
-                    <Label text="כיבוד" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
-                </StackLayout>
-            </StackLayout>
-            <StackLayout #other class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%" (tap)="onOtherTap()">
-                <StackLayout horizontalAlignment="center" width="30" marginTop="3">
-                    <Image></Image>
-                    <Label text="אחר" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
-                </StackLayout>
-            </StackLayout>
-        </FlexboxLayout>
-    </StackLayout>
 
-    <!--<StackLayout>-->
-        <!--<TextField></TextField>-->
-    <!--</StackLayout>-->
+    <expense-type (onCategoryClick)="setCategory($event)"></expense-type>
 
-    <StackLayout marginTop="10">
-        <StackLayout>
-            <Label text="סכום" fontSize="12"></Label>
-        </StackLayout>
-        <StackLayout marginTop="5" horizontalAlignment="right">
-            <flexbox-layout>
-                <Label text="ש''ח" marginRight="10" marginTop="3"></Label>
-                <TextField #amount hint="הזן סכום..." borderColor="black" borderWidth="1" width="30%" height="40"
-                           fontSize="15"></TextField>
-            </flexbox-layout>
-        </StackLayout>
-    </StackLayout>
+    <expense-amount (onAmountChanged)="setAmount($event)"></expense-amount>
 
-    <StackLayout marginTop="5" horizontalAlignment="right">
-        <StackLayout height="140">
-            <Label text="תאריך החשבונית" fontSize="12"></Label>
-            <DatePicker #invoiceDate [minDate]="minDate"></DatePicker>
-            <Label text="התאריך שרשום על הקבלה"></Label>
-        </StackLayout>
-        <StackLayout height="40">
-            <Label text="תאריך הגשת ההוצאה" fontSize="12"></Label>
-            <Label #inputDate Text="{{getDate()}}" horizontalAlignment="right" backgroundColor="#d3d3d3" marginTop="5"
-                   borderColor="black" borderWidth="1" fontSize="12" width="100" height="20"
-                   class="text-center"></Label>
-        </StackLayout>
-    </StackLayout>
+    <expense-dates (onDateChanged)="setDate($event)"></expense-dates>
 
     <StackLayout marginTop="5" *ngIf="cameraAvailable">
         <Label text="צילום הקבלה" fontSize="12"></Label>
-        <Image [src]="imageSrc" height="100" (tap)="add(amount.text)" borderColor="black" borderWidth="1"></Image>
+        <Image [src]="imageSrc" height="100" (tap)="takePicture()" borderColor="black" borderWidth="1"></Image>
     </StackLayout>
 
     <StackLayout marginTop="5" *ngIf="!cameraAvailable">
         <Label text="המצלמה לא זמינה" color="red"></Label>
-        <Button text="שלח" (tap)="add(amount.text)"></Button>
+    </StackLayout>
+
+    <StackLayout>
+        <Button text="שלח" (tap)="sendInvoice()"></Button>
     </StackLayout>
 
 </StackLayout>

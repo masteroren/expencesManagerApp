@@ -21,12 +21,6 @@ export class WelcomeComponent implements OnInit {
 
     ngOnInit() {
 
-        // this.httpService.test()
-        //     .subscribe(data => {
-        //         console.log(data.json());
-        //     });
-
-
         let employee = localStorage.getItem('employee');
         if (employee) {
             this.routerExtensions.navigate(["/expenses"], {
@@ -38,7 +32,6 @@ export class WelcomeComponent implements OnInit {
             this.httpService.users()
                 .subscribe(data => {
                     this.employees = data.json();
-                    console.log(this.employees);
                 });
         }
     }

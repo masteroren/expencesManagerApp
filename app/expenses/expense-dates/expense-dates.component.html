@@ -1,0 +1,13 @@
+<StackLayout marginTop="5" horizontalAlignment="right">
+    <StackLayout height="140">
+        <Label text="תאריך החשבונית" fontSize="12"></Label>
+        <DatePicker #invoiceDate [minDate]="minDate" (propertyChange)="dateChanged($event)"></DatePicker>
+        <Label text="התאריך שרשום על הקבלה"></Label>
+    </StackLayout>
+    <StackLayout height="40">
+        <Label text="תאריך הגשת ההוצאה" fontSize="12"></Label>
+        <Label #inputDate Text="{{getDate()}}" horizontalAlignment="right" backgroundColor="#d3d3d3" marginTop="5"
+               borderColor="black" borderWidth="1" fontSize="12" width="100" height="20"
+               class="text-center"></Label>
+    </StackLayout>
+</StackLayout>
