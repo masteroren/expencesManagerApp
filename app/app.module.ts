@@ -7,9 +7,7 @@ import {AppComponent} from "./app.component";
 import {ExpensesModule} from "./expenses/expenses.module";
 import {WelcomeModule} from "./welcome/welcome.module";
 
-import {ExpensesComponent} from "./expenses/expenses.component";
-import {WelcomeComponent} from "./welcome/welcome.component";
-import {FinishComponent} from "./expenses/finish/finish-step.component";
+import {appRoutes} from "./app.routing";
 
 @NgModule({
     declarations: [AppComponent],
@@ -17,25 +15,7 @@ import {FinishComponent} from "./expenses/finish/finish-step.component";
     imports: [
         NativeScriptModule,
         NativeScriptRouterModule,
-        NativeScriptRouterModule.forRoot([
-            {
-                path: '',
-                pathMatch: 'full',
-                redirectTo: '/welcome'
-            },
-            {
-                path: 'welcome',
-                component: WelcomeComponent
-            },
-            {
-                path: 'expenses',
-                component: ExpensesComponent
-            },
-            {
-                path: 'finish/:id',
-                component: FinishComponent
-            }
-        ]),
+        NativeScriptRouterModule.forRoot(appRoutes),
         NativeScriptHttpModule,
         WelcomeModule,
         ExpensesModule,

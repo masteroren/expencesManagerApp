@@ -1,8 +1,9 @@
-import {Routes} from "@angular/router";
 import {ExpensesComponent} from "./expenses/expenses.component";
 import {WelcomeComponent} from "./welcome/welcome.component";
+import {SuccessComponent} from "./expenses/success/success.component";
+import {FailureComponent} from "./expenses/failure/failure.component";
 
-export const appRoutes: Routes = [
+export const appRoutes = [
     {
         path: '',
         pathMatch: 'full',
@@ -15,5 +16,13 @@ export const appRoutes: Routes = [
     {
         path: 'expenses',
         component: ExpensesComponent
+    },
+    {
+        path: 'success',
+        component: SuccessComponent
+    },
+    {
+        path: 'failure',
+        component: FailureComponent
     }
 ];

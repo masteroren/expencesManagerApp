@@ -1,34 +1,14 @@
-<StackLayout marginTop="15">
-    <FlexboxLayout justifyContent="space-between">
-        <StackLayout #parking class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%"
-                     (tap)="onParkingTap()">
-            <StackLayout ignment="center" width="30" marginTop="3">
-                <Image src="res://car_icon"></Image>
-                <Label text="חניה" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
-            </StackLayout>
-        </StackLayout>
-        <StackLayout #driving class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%"
-                     (tap)="onDrivingTap()">
+<StackLayout class="exp-type-container" backgroundColor="lightslategray">
+    <GridLayout rows="40" columns="auto,auto,auto,auto" horizontalAlignment="center">
+        <StackLayout *ngFor="let category of categories; let i = index" col="{{i}}" class="exp-type {{category.class}}" (tap)="onTap(i);"
+                     [ngClass]="{selected: selectedIndex == category.id}">
             <StackLayout horizontalAlignment="center" width="30" marginTop="3">
-                <Image src="res://travel_icon"></Image>
-                <Label text="נסיעה" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
+                <Image [src]="selectedIndex == category.id ? category.image_on : category.image_off" width="40" height="40"></Image>
             </StackLayout>
         </StackLayout>
-        <StackLayout #food class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%" (tap)="onFoodTap()">
-            <StackLayout horizontalAlignment="center" width="30" marginTop="3">
-                <Image src="res://food_icon"></Image>
-                <Label text="כיבוד" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
-            </StackLayout>
-        </StackLayout>
-        <StackLayout #other class="exp-type" borderWidth="2" borderColor="#6495ed" width="15%" (tap)="onOtherTap()">
-            <StackLayout horizontalAlignment="center" width="30" marginTop="3">
-                <Image></Image>
-                <Label text="אחר" horizontalAlignment="center" fontSize="12" marginTop="5"></Label>
-            </StackLayout>
-        </StackLayout>
-    </FlexboxLayout>
+    </GridLayout>
 </StackLayout>
 
-<StackLayout *ngIf="showOther">
-    <TextField #expenseName (propertyChange)="setOtherCategory(expenseName.text)"></TextField>
-</StackLayout>
+<!--<StackLayout *ngIf="showOther">-->
+<!--<TextField #expenseName (propertyChange)="setOtherCategory(expenseName.text)"></TextField>-->
+<!--</StackLayout>-->

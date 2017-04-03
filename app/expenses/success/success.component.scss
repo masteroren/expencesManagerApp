@@ -1,0 +1,21 @@
+.success{
+  background-color: lightslategray;
+  height: 100%;
+
+  .success-image{
+    width: 50px;
+    height: 50px;
+    margin: 15px;
+  }
+
+  .success-text{
+    color: white;
+  }
+
+  .success-btn{
+    background-color: #53d8ea;
+    color: white;
+    width: 130px;
+    margin-top: 10px;
+  }
+}

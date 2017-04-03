@@ -1,19 +1,21 @@
-import {Component, EventEmitter, Output} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {ICategory} from "../../shared/interfaces/ICategory";
 
 @Component({
     selector: 'expense-dates',
-    templateUrl: 'expenses/expense-dates/expense-dates.component.html'
+    templateUrl: 'expenses/expense-dates/expense-dates.component.html',
+    styleUrls: ['expenses/expense-dates/expense-dates.component.css']
 })
-export class ExpenseDatesComponent{
+export class ExpenseDatesComponent {
+    @Input() category: ICategory;
     @Output() onDateChanged: EventEmitter<Date> = new EventEmitter();
-    minDate: Date = new Date();
 
-    getDate() {
-        return new Date().toDateString();
+    dateChanged(e) {
+        this.onDateChanged.emit(e.value);
     }
 
-    dateChanged(e){
-        this.onDateChanged.emit(e.value);
+    getMinDate() {
+        return new Date();
     }
 
 }

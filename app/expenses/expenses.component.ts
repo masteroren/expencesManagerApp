@@ -1,11 +1,11 @@
-import {Component, ViewChild, ElementRef, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Page} from "ui/page";
 import {HttpService} from "../shared/services/httpService";
 
 // Native Script core
-import cameraModule = require("camera");
 import {RouterExtensions} from "nativescript-angular";
 import {IEmployee} from "../shared/interfaces/IEmployee";
+import {ICategory} from "../shared/interfaces/ICategory";
 
 require("nativescript-localstorage");
 
@@ -17,10 +17,8 @@ require("nativescript-localstorage");
 })
 export class ExpensesComponent implements OnInit {
     employee: IEmployee;
-    imageSrc: any;
-    category: string;
+    category: ICategory;
     minDate: Date = new Date();
-    cameraAvailable: Boolean = cameraModule.isAvailable();
     amount: number;
     invoiceDate: Date;
     base64StringImg: string = '';
@@ -30,64 +28,70 @@ export class ExpensesComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('init');
         if (localStorage.getItem('employee')) {
             this.employee = JSON.parse(localStorage.getItem('employee'));
         }
-        console.log('camera available => ', cameraModule.isAvailable())
+    }
+
+    logout(){
+        localStorage.clear();
+        this.routerExtensions.navigate(["welcome"], {
+            transition: {
+                name: "flip"
+            }
+        });
     }
 
     setAmount(amount) {
         this.amount = amount;
-        console.log('Amount => ', this.amount);
     }
 
-    setCategory(e) {
-        this.category = e;
-        console.log('Category selected => ', this.category);
+    setCategory(category: ICategory) {
+        this.category = category;
     }
 
     setDate(date) {
         this.invoiceDate = date;
-        console.log('Date => ', this.invoiceDate);
     }
 
-    takePicture() {
-        if (this.cameraAvailable) {
-            cameraModule.takePicture({width: 50, height: 50, keepAspectRatio: true}).then(imageSource => {
-                this.imageSrc = imageSource;
-                this.base64StringImg = imageSource.toBase64String("jpg");
-            });
-        }
+    setImage(imgString: string) {
+        this.base64StringImg = imgString;
     }
 
     sendInvoice() {
-        if (this.valid()) {
-            let invDate = this.invoiceDate ? this.invoiceDate : this.minDate;
-            let currentDate = new Date();
+        let invDate = this.invoiceDate ? this.invoiceDate : this.minDate;
+        let currentDate = new Date();
 
+        let valid = this.category && this.amount && this.base64StringImg;
+
+        if (valid){
             this.httpService.upload({
                 empName: this.employee.name,
-                type: this.category,
+                type: this.category.name,
                 amount: this.amount,
                 invoiceDate: invDate.getTime(),
                 createDate: currentDate.getTime(),
                 image: this.base64StringImg
             }).subscribe(data => {
-                this.routerExtensions.navigate(["/finish", 0], {
+                this.routerExtensions.navigate(["success"], {
+                    transition: {
+                        name: "flip"
+                    }
+                });
+            }, error => {
+                this.routerExtensions.navigate(["failure"], {
                     transition: {
                         name: "flip"
                     }
                 });
             });
         } else {
-
+            this.routerExtensions.navigate(["failure"], {
+                transition: {
+                    name: "flip"
+                }
+            });
         }
-    }
-
-    valid() {
-        // return this.category && this.amount && this.invoiceDate && this.base64StringImg;
-        return true;
     }
 }
 

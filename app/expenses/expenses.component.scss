@@ -1,8 +1,30 @@
-.expenses-wrapper {
-    width: 80%;
-    border: 1px solid #00aafc;
+$foodColor: #5bd2d1;
 
-    .exp-type{
+.main-container{
+    //background-color: lightslategray;
+}
+
+.expenses-wrapper {
+    width: 85%;
+}
+
+.exp-label{
+    font-size: 26px;
+
+    &.food{
+        color: #5bd2d1;
+    }
+
+    &.driving{
+        color: #71dbbd;
+    }
+
+    &.other{
+        color: #48819e;
+    }
+
+    &.parking{
+        color: #ff4e50;
     }
 }
 
@@ -21,4 +43,14 @@
     font-size: 24px;
     font-weight: bold;
     vertical-align: center;
+}
+
+.send-btn{
+    width: 100px;
+    height: 40px;
+    color: white;
+    background-color: #6668de;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 12px;
 }

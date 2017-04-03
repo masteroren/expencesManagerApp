@@ -1,12 +1,9 @@
-<StackLayout marginTop="10">
+<StackLayout class="exp-amount-container" horizontalAlignment="center">
     <StackLayout>
-        <Label text="סכום" fontSize="12"></Label>
+        <Label class="exp-label {{category.class}}" text="סכום"></Label>
     </StackLayout>
     <StackLayout marginTop="5" horizontalAlignment="right">
-        <flexbox-layout>
-            <Label text="ש''ח" marginRight="10" marginTop="3"></Label>
-            <TextField #amountField hint="הזן סכום..." borderColor="black" borderWidth="1" width="30%" height="40"
-                       fontSize="15" text="{{amount}}" (propertyChange)="amountChanged(amountField.text)"></TextField>
-        </flexbox-layout>
+        <TextField #amountField hint="הזן סכום..." borderColor="black" borderWidth="1" height="40" width="100%"
+                   fontSize="15" text="{{amount}}" (propertyChange)="amountChanged(amountField.text)"></TextField>
     </StackLayout>
 </StackLayout>

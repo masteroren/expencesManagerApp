@@ -1,9 +1,9 @@
 <StackLayout *ngIf="!userIn" class="welcome">
-    <ListView [items]="employees" verticalAlignment="center" height="90" (itemTap)="onItemTap($event)">
-        <template let-employee="item" let-i="index">
-            <GridLayout columns="20, *">
-                <Label col="0" [text]="employee.id"></Label>
-                <Label col="1" [text]="employee.name"></Label>
+    <ListView [items]="employees" class="employees-list" verticalAlignment="center" (itemTap)="onItemTap($event)">
+        <template let-employee="item" let-i="index" class="employee-item">
+            <GridLayout rows="30" columns="30, *">
+                <Label col="0" [text]="employee.id" verticalAlignment="center" fontSize="18"></Label>
+                <Label col="1" [text]="employee.name" verticalAlignment="center" fontSize="18"></Label>
             </GridLayout>
         </template>
     </ListView>

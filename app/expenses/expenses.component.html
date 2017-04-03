@@ -1,22 +1,25 @@
-<StackLayout class="expenses-wrapper" horizontalAlignment="center">
+<StackLayout backgroundColor="lightslategray">
+    <StackLayout class="expenses-wrapper" horizontalAlignment="center">
 
-    <expense-type (onCategoryClick)="setCategory($event)"></expense-type>
+        <Label horizontalAlignment="center" text="היי {{employee.name}}"></Label>
 
-    <expense-amount (onAmountChanged)="setAmount($event)"></expense-amount>
+        <expense-type (onCategoryClick)="setCategory($event)"></expense-type>
+        <StackLayout backgroundColor="white" borderRadius="10">
+            <Label class="exp-label {{category.class}}" horizontalAlignment="center" text="{{category.name}}"></Label>
 
-    <expense-dates (onDateChanged)="setDate($event)"></expense-dates>
+            <expense-amount [category]="category" (onAmountChanged)="setAmount($event)"></expense-amount>
 
-    <StackLayout marginTop="5" *ngIf="cameraAvailable">
-        <Label text="צילום הקבלה" fontSize="12"></Label>
-        <Image [src]="imageSrc" height="100" (tap)="takePicture()" borderColor="black" borderWidth="1"></Image>
+            <expense-ref [category]="category"></expense-ref>
+
+            <expense-dates [category]="category" (onDateChanged)="setDate($event)"></expense-dates>
+
+            <expense-image [category]="category" (onTakePicture)="setImage($event)"></expense-image>
+
+            <FlexboxLayout justifyContent="center">
+                <Button class="send-btn" text="שלח" (tap)="sendInvoice()"></Button>
+                <Button class="send-btn" text="צא" (tap)="logout()"></Button>
+            </FlexboxLayout>
+        </StackLayout>
+
     </StackLayout>
-
-    <StackLayout marginTop="5" *ngIf="!cameraAvailable">
-        <Label text="המצלמה לא זמינה" color="red"></Label>
-    </StackLayout>
-
-    <StackLayout>
-        <Button text="שלח" (tap)="sendInvoice()"></Button>
-    </StackLayout>
-
 </StackLayout>

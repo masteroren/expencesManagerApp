@@ -1,58 +1,69 @@
-import {Component, ElementRef, EventEmitter, Output, ViewChild} from "@angular/core";
-import {Color} from "color";
-let colorModule = require("color");
+import {Component, EventEmitter, OnInit, Output} from "@angular/core";
+import {ICategory} from "../../shared/interfaces/ICategory";
 
 @Component({
     selector: 'expense-type',
-    templateUrl: 'expenses/expense-type/expense-type.component.html'
+    templateUrl: 'expenses/expense-type/expense-type.component.html',
+    styleUrls: ['expenses/expense-type/expense-type.component.css']
 })
-export class ExpenseTypeComponent{
-    defaultTypeColor: Color = new colorModule.Color('white');
+export class ExpenseTypeComponent implements OnInit {
 
-    @ViewChild("food") food: ElementRef;
-    @ViewChild("parking") parking: ElementRef;
-    @ViewChild("driving") driving: ElementRef;
-    @ViewChild("other") other: ElementRef;
-
-    @Output() onCategoryClick: EventEmitter<string> = new EventEmitter();
+    @Output() onCategoryClick: EventEmitter<ICategory> = new EventEmitter();
 
     showOther: boolean = false;
+    selectedIndex: number = 3;
 
-    private resetAll() {
-        this.driving.nativeElement.backgroundColor = this.defaultTypeColor;
-        this.food.nativeElement.backgroundColor = this.defaultTypeColor;
-        this.parking.nativeElement.backgroundColor = this.defaultTypeColor;
-        this.other.nativeElement.backgroundColor = this.defaultTypeColor;
+    categories: ICategory[] = [
+        {
+            id: 0,
+            name: 'אחר',
+            image_on: 'res://receipts_purple',
+            image_off: 'res://other_icon_white',
+            class: 'other',
+            color: '#48819e'
+        },
+        {
+            id: 1,
+            name: 'נסיעות',
+            image_on: 'res://car_purple',
+            image_off: 'res://transportation_icon_white',
+            class: 'driving',
+            color: '#71dbbd'
+        },
+        {
+            id: 2,
+            name: 'אוכל',
+            image_on: 'res://cupcake_purple',
+            image_off: 'res://food_icon_white',
+            class: 'food',
+            color: '#5bd2d1'
+        },
+        {
+            id: 3,
+            name: 'חנייה',
+            image_on: 'res://parking_icon',
+            image_off: 'res://parking_white',
+            class: 'parking',
+            color: '#ff4e50'
+        }
+    ];
+
+    constructor() {
+
     }
 
-    onParkingTap() {
-        this.resetAll();
-        this.parking.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.onCategoryClick.emit('Parking');
+    ngOnInit() {
+        this.setSelection(3);
+    }
+
+    onTap(i:number){
+        this.setSelection(i);
+    }
+
+    setSelection(id) {
+        let category: ICategory = this.categories.filter(item => item.id == id)[0];
+        this.selectedIndex = category.id;
+        this.onCategoryClick.emit(category);
         this.showOther = false;
-    }
-
-    onFoodTap() {
-        this.resetAll();
-        this.food.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.onCategoryClick.emit('Food');
-        this.showOther = false;
-    }
-
-    onDrivingTap() {
-        this.resetAll();
-        this.driving.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.onCategoryClick.emit('Driving');
-        this.showOther = false;
-    }
-
-    onOtherTap() {
-        this.resetAll();
-        this.other.nativeElement.backgroundColor = new colorModule.Color('#6495ed');
-        this.showOther = true;
-    }
-
-    setOtherCategory(val){
-        this.onCategoryClick.emit(val);
     }
 }
