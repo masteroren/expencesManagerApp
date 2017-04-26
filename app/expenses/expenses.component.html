@@ -4,12 +4,13 @@
         <Label horizontalAlignment="center" text="היי {{employee.name}}"></Label>
 
         <expense-type (onCategoryClick)="setCategory($event)"></expense-type>
+
         <StackLayout backgroundColor="white" borderRadius="10">
             <Label class="exp-label {{category.class}}" horizontalAlignment="center" text="{{category.name}}"></Label>
 
             <expense-amount [category]="category" (onAmountChanged)="setAmount($event)"></expense-amount>
 
-            <expense-ref [category]="category"></expense-ref>
+            <expense-ref [category]="category" (onRecipeNumberChanged)="setRecipeNumber($event)"></expense-ref>
 
             <expense-dates [category]="category" (onDateChanged)="setDate($event)"></expense-dates>
 

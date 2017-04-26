@@ -22,6 +22,7 @@ export class ExpensesComponent implements OnInit {
     amount: number;
     invoiceDate: Date;
     base64StringImg: string = '';
+    recipeNumber: string = '';
 
     constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
         page.actionBarHidden = true;
@@ -58,11 +59,17 @@ export class ExpensesComponent implements OnInit {
         this.base64StringImg = imgString;
     }
 
+    setRecipeNumber(recipeNumber: string){
+        this.recipeNumber = recipeNumber;
+    }
+
     sendInvoice() {
         let invDate = this.invoiceDate ? this.invoiceDate : this.minDate;
         let currentDate = new Date();
 
         let valid = this.category && this.amount && this.base64StringImg;
+
+        console.log(valid);
 
         if (valid){
             this.httpService.upload({
@@ -71,7 +78,8 @@ export class ExpensesComponent implements OnInit {
                 amount: this.amount,
                 invoiceDate: invDate.getTime(),
                 createDate: currentDate.getTime(),
-                image: this.base64StringImg
+                image: this.base64StringImg,
+                recipeNumber: this.recipeNumber
             }).subscribe(data => {
                 this.routerExtensions.navigate(["success"], {
                     transition: {
@@ -79,6 +87,7 @@ export class ExpensesComponent implements OnInit {
                     }
                 });
             }, error => {
+                console.log(error);
                 this.routerExtensions.navigate(["failure"], {
                     transition: {
                         name: "flip"

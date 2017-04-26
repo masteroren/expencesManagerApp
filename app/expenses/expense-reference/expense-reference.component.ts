@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {ICategory} from "../../shared/interfaces/ICategory";
 
 @Component({
@@ -8,4 +8,9 @@ import {ICategory} from "../../shared/interfaces/ICategory";
 })
 export class ExpenseReferenceComponent {
     @Input() category: ICategory;
+    @Output() onRecipeNumberChanged: EventEmitter<string> = new EventEmitter();
+
+    recipeNumberChanged(value){
+        this.onRecipeNumberChanged.emit(value);
+    }
 }
