@@ -21,6 +21,7 @@ export class HttpService {
 
     upload(invoiceData: IInvoice) {
         console.log(`${BASE_URL}upload`);
+        console.log(JSON.stringify(invoiceData));
         return this.http.post(`${BASE_URL}upload`, invoiceData);
     }
 
