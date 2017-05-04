@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Page} from "ui/page";
 import {HttpService} from "../shared/services/httpService";
+import cameraModule = require("camera");
 
 // Native Script core
 import {RouterExtensions} from "nativescript-angular";
@@ -8,6 +9,7 @@ import {IEmployee} from "../shared/interfaces/IEmployee";
 import {ICategory} from "../shared/interfaces/ICategory";
 
 require("nativescript-localstorage");
+import {isNullOrUndefined} from "utils/types";
 
 @Component({
     selector: 'app-expenses',
@@ -66,10 +68,12 @@ export class ExpensesComponent implements OnInit {
     sendInvoice() {
         let invDate = this.invoiceDate ? this.invoiceDate : this.minDate;
         let currentDate = new Date();
+        let cameraAvailable: Boolean = cameraModule.isAvailable();
 
-        let valid = this.category && this.amount && this.base64StringImg;
-
-        console.log(valid);
+        let valid = !isNullOrUndefined(this.category) && !isNullOrUndefined(this.amount);
+        if (cameraAvailable){
+            valid = valid && !isNullOrUndefined(this.base64StringImg);
+        }
 
         if (valid){
             this.httpService.upload({

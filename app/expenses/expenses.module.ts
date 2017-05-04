@@ -5,7 +5,7 @@ import {ExpensesComponent} from "./expenses.component";
 import {ExpenseTypeComponent} from "./expense-type/expense-type.component";
 import {ExpenseAmountComponent} from "./expense-amount/expense-amount.component";
 import {ExpenseDatesComponent} from "./expense-dates/expense-dates.component";
-import {ExpenseReferenceComponent} from "./expense-reference/expense-reference.component";
+import {ExpenseIdComponent} from "./expense-id/expense-id.component";
 import {ExpenseImageComponent} from "./expense-image/expense-image.component";
 import {SuccessComponent} from "./success/success.component";
 import {FailureComponent} from "./failure/failure.component";
@@ -16,7 +16,7 @@ import {FailureComponent} from "./failure/failure.component";
         ExpenseTypeComponent,
         ExpenseAmountComponent,
         ExpenseDatesComponent,
-        ExpenseReferenceComponent,
+        ExpenseIdComponent,
         ExpenseImageComponent,
         SuccessComponent,
         FailureComponent

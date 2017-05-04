@@ -1,0 +1,10 @@
+<StackLayout horizontalAlignment="center">
+    <StackLayout horizontalAlignment="right">
+        <Label class="exp-label {{category.class}}" text="מספר חשבונית"></Label>
+    </StackLayout>
+    <StackLayout horizontalAlignment="right">
+        <TextField #recipeNumber hint="Reciep ID..." borderWidth="1" borderColor="black" width="90%" height="40"
+                   fontSize="15" text="{{ref}}"
+                   (propertyChange)="recipeNumberChanged(recipeNumber.text)"></TextField>
+    </StackLayout>
+</StackLayout>
