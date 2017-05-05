@@ -4,7 +4,7 @@
         <Image [src]="imageSrc" height="100" (tap)="takePicture()" borderColor="black" borderWidth="1"></Image>
     </StackLayout>
 
-    <StackLayout marginTop="5" *ngIf="!cameraAvailable" horizontalAlignment="right" width="90%" marginLeft="5%" marginRight="5%">
-        <Label text="המצלמה לא זמינה" color="red"></Label>
+    <StackLayout marginTop="5" *ngIf="!cameraAvailable" width="90%" marginLeft="5%" marginRight="5%">
+        <Label text="המצלמה לא זמינה" color="red" horizontalAlignment="center" ></Label>
     </StackLayout>
 </StackLayout>
