@@ -77,6 +77,7 @@ export class ExpensesComponent implements OnInit {
 
         if (valid){
             this.httpService.upload({
+                empId: this.employee.id,
                 empName: this.employee.name,
                 type: this.category.name,
                 amount: this.amount,
