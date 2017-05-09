@@ -5,39 +5,30 @@
     <StackLayout HorizontalOptions="FillAndExpand"
                  Orientation="StackOrientation.Vertical" height="100%" class="expenses-wrapper">
 
-
         <Label class="label" horizontalAlignment="right" text="היי, {{employee.name}}"></Label>
 
         <expense-type (onCategoryClick)="setCategory($event)"></expense-type>
-
 
         <StackLayout HorizontalOptions="FillAndExpand"
                      Orientation="StackOrientation.Vertical"
                      height="100%" backgroundColor="white">
             <FlexboxLayout height="100%" flexDirection="column">
                 <FlexboxLayout flexGrow="1" flexDirection="column" horizontalAlignment="right">
-                    <Label class="exp-label {{category.class}}" marginTop="3"  text="קטגוריה: {{category.name}}"></Label>
+                    <Label class="exp-label {{category.class}}" height="50" marginTop="3" text="קטגוריה: {{category.name}}"></Label>
 
                     <expense-amount [category]="category" (onAmountChanged)="setAmount($event)"></expense-amount>
 
-                    <expense-id [category]="category" (onRecipeNumberChanged)="setRecipeNumber($event)"></expense-id>
-
                     <expense-dates [category]="category" (onDateChanged)="setDate($event)"></expense-dates>
 
-                    <expense-image flexGrow="1"  [category]="category" (onTakePicture)="setImage($event)"></expense-image>
+                    <expense-image flexGrow="1" [category]="category"
+                                   (onTakePicture)="setImage($event)"></expense-image>
                 </FlexboxLayout>
 
-                <FlexboxLayout  alignContent="flex-end" justifyContent="center">
+                <FlexboxLayout alignContent="flex-end" justifyContent="center">
                     <Button class="send-btn" text="שלח" (tap)="sendInvoice()"></Button>
                     <Button class="send-btn secondary" text="צא" (tap)="logout()"></Button>
                 </FlexboxLayout>
             </FlexboxLayout>
-
-
-
-
-
         </StackLayout>
-
     </StackLayout>
 </StackLayout>

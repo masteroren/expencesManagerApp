@@ -1,5 +1,5 @@
 <StackLayout class="exp-type-container" backgroundColor="lightslategray">
-    <GridLayout rows="40" columns="auto,auto,auto,auto" horizontalAlignment="center">
+    <GridLayout rows="70" columns="auto,auto,auto,auto" horizontalAlignment="center">
         <StackLayout *ngFor="let category of categories; let i = index" col="{{i}}" class="exp-type {{category.class}}" (tap)="onTap(i);"
                      [ngClass]="{selected: selectedIndex == category.id}">
             <StackLayout horizontalAlignment="center"  marginTop="10" marginBottom="10">
@@ -8,7 +8,3 @@
         </StackLayout>
     </GridLayout>
 </StackLayout>
-
-<!--<StackLayout *ngIf="showOther">-->
-<!--<TextField #expenseName (propertyChange)="setOtherCategory(expenseName.text)"></TextField>-->
-<!--</StackLayout>-->

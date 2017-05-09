@@ -18,4 +18,7 @@ export class ExpenseDatesComponent {
         return new Date();
     }
 
+    getMinDate() {
+    }
+
 }
