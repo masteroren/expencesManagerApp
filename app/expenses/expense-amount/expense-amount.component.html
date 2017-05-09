@@ -1,11 +1,12 @@
-<StackLayout  horizontalAlignment="center" >
+<StackLayout  horizontalAlignment="center" padding="0 15px">
     <StackLayout>
         <Label class="exp-label {{category.class}}" text="סכום" horizontalAlignment="right"></Label>
     </StackLayout>
-    <StackLayout horizontalAlignment="right">
+    <StackLayout horizontalAlignment="right" marginBottom="10">
         <TextField #amountField
-                   hint="Amount..." borderColor="black" borderWidth="1" height="40" width="90%"
-                   fontSize="15" text="{{amount}}" horizontalAlignment="right"
+                   class="input"
+                   hint="הזן סכום חשבונית" borderColor="black" borderWidth="1" height="40" width="100%"
+                   fontSize="20" text="{{amount}}" horizontalAlignment="right"
                    (propertyChange)="amountChanged(amountField.text)"></TextField>
     </StackLayout>
 

@@ -91,7 +91,7 @@ export class ExpensesComponent implements OnInit {
                     }
                 });
             }, error => {
-                console.log(error);
+                console.log('error---->',error);
                 this.routerExtensions.navigate(["failure"], {
                     transition: {
                         name: "flip"
@@ -99,6 +99,7 @@ export class ExpensesComponent implements OnInit {
                 });
             });
         } else {
+            console.log('not Valid');
             this.routerExtensions.navigate(["failure"], {
                 transition: {
                     name: "flip"

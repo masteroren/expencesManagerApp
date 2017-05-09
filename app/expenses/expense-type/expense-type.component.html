@@ -2,8 +2,8 @@
     <GridLayout rows="40" columns="auto,auto,auto,auto" horizontalAlignment="center">
         <StackLayout *ngFor="let category of categories; let i = index" col="{{i}}" class="exp-type {{category.class}}" (tap)="onTap(i);"
                      [ngClass]="{selected: selectedIndex == category.id}">
-            <StackLayout horizontalAlignment="center" width="30" marginTop="3">
-                <Image [src]="selectedIndex == category.id ? category.image_on : category.image_off" width="40" height="40"></Image>
+            <StackLayout horizontalAlignment="center"  marginTop="10" marginBottom="10">
+                <Image [src]="selectedIndex == category.id ? category.image_on : category.image_off" width="60" height="60"></Image>
             </StackLayout>
         </StackLayout>
     </GridLayout>

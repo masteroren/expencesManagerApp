@@ -14,7 +14,7 @@ export class ExpenseDatesComponent {
         this.onDateChanged.emit(e.value);
     }
 
-    getMinDate() {
+    getMaxDate() {
         return new Date();
     }
 

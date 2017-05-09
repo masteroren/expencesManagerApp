@@ -1,8 +1,7 @@
-<StackLayout class="exp-date-container" horizontalAlignment="center">
-    <StackLayout horizontalAlignment="right" width="90%" marginLeft="5%" marginRight="5%">
+<StackLayout class="exp-date-container" padding="0 15px" horizontalAlignment="center">
+    <StackLayout horizontalAlignment="right">
         <Label class="exp-label {{category.class}}" text="תאריך החשבונית" horizontalAlignment="right"></Label>
-        <DatePicker #invoiceDate class="exp-date" [minDate]="getMinDate()"
+        <DatePicker width="100%" #invoiceDate class="exp-date" [maxDate]="getMaxDate()"
                     (propertyChange)="dateChanged($event)"></DatePicker>
-        <!--<Label class="exp-date-comment" text="התאריך שרשום על הקבלה"></Label>-->
     </StackLayout>
 </StackLayout>

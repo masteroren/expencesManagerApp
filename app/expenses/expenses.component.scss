@@ -5,12 +5,12 @@ $foodColor: #5bd2d1;
 }
 
 .expenses-wrapper {
-    width: 85%;
 }
+
 
 .exp-label{
     font-size: 26px;
-
+    text-align: center;
     &.food{
         color: #5bd2d1;
     }
@@ -47,10 +47,22 @@ $foodColor: #5bd2d1;
 
 .send-btn{
     width: 100px;
-    height: 40px;
     color: white;
     background-color: #6668de;
     border-radius: 5px;
     margin: 10px;
-    font-size: 12px;
+    font-size: 20px;
+    &.secondary{
+        background-color: transparent;
+        color: #6668de;
+        border-color: #6668de;
+        border-width:1px;
+
+    }
+}
+
+.label{
+    padding: 0 0 15px 0;
+    color: white;
+    font-style: italic;
 }

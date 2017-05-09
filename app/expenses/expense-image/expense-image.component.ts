@@ -16,10 +16,11 @@ export class ExpenseImageComponent {
 
     takePicture() {
         if (this.cameraAvailable) {
-            cameraModule.takePicture({width: 50, height: 50, keepAspectRatio: true}).then(imageSource => {
+            cameraModule.takePicture({width:50, keepAspectRatio: true}).then(imageSource => {
                 this.imageSrc = imageSource;
-                this.onTakePicture.emit(imageSource.toBase64String("jpg"))
+                this.onTakePicture.emit(imageSource.toBase64String("jpeg"))
             });
+
         }
     }
 }

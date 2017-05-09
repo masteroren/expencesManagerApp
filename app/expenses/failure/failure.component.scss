@@ -3,8 +3,6 @@
   height: 100%;
 
   .failure-image{
-    width: 50px;
-    height: 50px;
     margin: 15px;
   }
 
@@ -17,5 +15,7 @@
     color: white;
     width: 100px;
     margin-top: 10px;
+    border-radius: 5px;
+    font-size: 28px!important;
   }
 }
