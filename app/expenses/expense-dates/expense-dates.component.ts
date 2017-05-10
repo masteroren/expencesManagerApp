@@ -21,4 +21,8 @@ export class ExpenseDatesComponent {
     getMinDate() {
     }
 
+    getCurrDate(){
+        return new Date();
+    }
+
 }
