@@ -3,9 +3,9 @@
         <StackLayout height="40">
             <Label horizontalAlignment="right" class="exp-label {{category.class}}" text="צילום הקבלה"></Label>
         </StackLayout>
-        <Image flexGrow="1" [src]="imageSrc" *ngIf="imageSrc" height="70" (tap)="takePicture()" borderColor="black"
+        <Image flexGrow="1" [src]="imageSrc" *ngIf="imageSrc" height="50" (tap)="takePicture()" borderColor="black"
                borderWidth="1"></Image>
-        <Image flexGrow="1" [src]="'res://camera'" margin="35" *ngIf="!imageSrc" height="70"
+        <Image flexGrow="1" [src]="'res://camera'" margin="25" *ngIf="!imageSrc" height="50"
                (tap)="takePicture()"></Image>
     </FlexboxLayout>
 

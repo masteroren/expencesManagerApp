@@ -1,7 +1,9 @@
 <StackLayout class="exp-date-container" padding="0 15px" horizontalAlignment="center">
     <StackLayout horizontalAlignment="right">
         <Label class="exp-label {{category.class}}" text="תאריך החשבונית" horizontalAlignment="right"></Label>
-        <DatePicker width="100%" #invoiceDate class="exp-date" [maxDate]="getMaxDate()" [date]="getCurrDate()"
+        <DatePicker width="100%" #invoiceDate class="exp-date"
                     (propertyChange)="dateChanged($event)"></DatePicker>
     </StackLayout>
 </StackLayout>
+
+

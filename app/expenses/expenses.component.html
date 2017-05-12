@@ -14,7 +14,7 @@
                      height="100%" backgroundColor="white">
             <FlexboxLayout height="100%" flexDirection="column">
                 <FlexboxLayout flexGrow="1" flexDirection="column" horizontalAlignment="right">
-                    <Label class="exp-label {{category.class}}" height="50" marginTop="3" text="קטגוריה: {{category.name}}"></Label>
+                    <Label class="exp-label {{category.class}}" height="60" marginTop="3" text="קטגוריה: {{category.name}}"></Label>
 
                     <expense-amount [category]="category" (onAmountChanged)="setAmount($event)"></expense-amount>
 

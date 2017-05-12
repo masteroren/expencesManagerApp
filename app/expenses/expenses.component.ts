@@ -53,8 +53,12 @@ export class ExpensesComponent implements OnInit {
         this.category = category;
     }
 
-    setDate(date) {
-        this.invoiceDate = date;
+    setDate(date: number) {
+        // let currentDate = new Date();
+        // console.log('setDate => ', date);
+        // console.log('current date => ', currentDate);
+
+        // this.invoiceDate = new Date(date);
     }
 
     setImage(imgString: string) {
