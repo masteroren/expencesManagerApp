@@ -16,7 +16,7 @@ export class ExpenseDatesComponent {
     ngAfterViewInit(){
         this.invDate = this.invoiceDate.nativeElement;
         this.invDate.date = new Date();
-        // this.invDate.minDate = moment(new Date()).subtract(6, 'months');
+        this.invDate.minDate = new Date(2015,12,30);
         this.invDate.maxDate = new Date();
 
     }

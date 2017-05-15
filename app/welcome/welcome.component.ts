@@ -3,6 +3,7 @@ import {Component, OnInit} from "@angular/core";
 import {HttpService} from "../shared/services/httpService";
 import {RouterExtensions} from "nativescript-angular";
 import {Page} from "ui/page";
+let dialogs = require("ui/dialogs");
 
 @Component({
     selector: 'welcome',
@@ -14,6 +15,7 @@ import {Page} from "ui/page";
 export class WelcomeComponent implements OnInit {
 
     private employees: IEmployee[] = [];
+    private employee: IEmployee;
 
     constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
         page.actionBarHidden = true;
@@ -40,16 +42,24 @@ export class WelcomeComponent implements OnInit {
 
     onItemTap(args) {
         let index = args.index;
-        let employee = this.employees[index];
-        if (employee) {
-            localStorage.setItem('employee', JSON.stringify(employee));
+        this.employee = this.employees[index];
+        if (this.employee) {
+            localStorage.setItem('employee', JSON.stringify(this.employee));
+        }
+    }
 
+    start() {
+        if (this.employee) {
             this.routerExtensions.navigate(["/expenses"], {
                 transition: {
                     name: "flip"
                 }
             });
+        } else {
+            dialogs.alert({
+                title: 'שכחת משהו...',
+                message: 'אנא בחר עובד'
+            })
         }
-
     }
 }
