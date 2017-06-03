@@ -1,5 +1,6 @@
 {
   "description": "NativeScript Application",
+  "version": "1.0.1",
   "license": "SEE LICENSE IN <your-license-filename>",
   "readme": "NativeScript Application",
   "repository": "https://github.com/ui-dev-team/NTS-oren.git",
@@ -25,11 +26,8 @@
     "core-js": "^2.4.1",
     "ie-shim": "^0.1.0",
     "nativescript-angular": "1.2.0",
-    "nativescript-background-http": "^2.4.2",
-    "nativescript-dev-sass": "^1.0.0-rc.2",
     "nativescript-localstorage": "^1.1.0",
     "nativescript-theme-core": "^0.2.1",
-    "redux": "^3.6.0",
     "reflect-metadata": "~0.1.8",
     "rxjs": "^5.0.1",
     "tns-core-modules": "^2.4.4"

@@ -9,6 +9,7 @@ import {ExpenseIdComponent} from "./expense-id/expense-id.component";
 import {ExpenseImageComponent} from "./expense-image/expense-image.component";
 import {SuccessComponent} from "./success/success.component";
 import {FailureComponent} from "./failure/failure.component";
+import {ExpenseCustomComponent} from "./expense-custom/expense-custome.component";
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import {FailureComponent} from "./failure/failure.component";
         ExpenseDatesComponent,
         ExpenseIdComponent,
         ExpenseImageComponent,
+        ExpenseCustomComponent,
         SuccessComponent,
         FailureComponent
     ],

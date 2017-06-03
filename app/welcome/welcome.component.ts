@@ -45,21 +45,27 @@ export class WelcomeComponent implements OnInit {
         this.employee = this.employees[index];
         if (this.employee) {
             localStorage.setItem('employee', JSON.stringify(this.employee));
-        }
-    }
 
-    start() {
-        if (this.employee) {
             this.routerExtensions.navigate(["/expenses"], {
                 transition: {
                     name: "flip"
                 }
             });
-        } else {
-            dialogs.alert({
-                title: 'שכחת משהו...',
-                message: 'אנא בחר עובד'
-            })
         }
     }
+
+    // start() {
+    //     if (this.employee) {
+    //         this.routerExtensions.navigate(["/expenses"], {
+    //             transition: {
+    //                 name: "flip"
+    //             }
+    //         });
+    //     } else {
+    //         dialogs.alert({
+    //             title: 'שכחת משהו...',
+    //             message: 'אנא בחר עובד'
+    //         })
+    //     }
+    // }
 }

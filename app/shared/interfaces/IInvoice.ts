@@ -6,5 +6,4 @@ export interface IInvoice{
     invoiceDate: number;
     createDate: number;
     image: string;
-    recipeNumber: string;
 }

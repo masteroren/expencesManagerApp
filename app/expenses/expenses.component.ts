@@ -22,6 +22,7 @@ export class ExpensesComponent implements OnInit {
     category: ICategory;
     minDate: Date = new Date();
     amount: number;
+    customType: string;
     invoiceDate: Date;
     base64StringImg: string = '';
     recipeNumber: string = '';
@@ -36,13 +37,17 @@ export class ExpensesComponent implements OnInit {
         }
     }
 
-    logout(){
+    logout() {
         localStorage.clear();
         this.routerExtensions.navigate(["welcome"], {
             transition: {
                 name: "flip"
             }
         });
+    }
+
+    setCustomType(value: string) {
+        this.customType = value;
     }
 
     setAmount(amount) {
@@ -54,18 +59,14 @@ export class ExpensesComponent implements OnInit {
     }
 
     setDate(date: number) {
-        // let currentDate = new Date();
-        // console.log('setDate => ', date);
-        // console.log('current date => ', currentDate);
-
-        // this.invoiceDate = new Date(date);
+        this.invoiceDate = new Date(date);
     }
 
     setImage(imgString: string) {
         this.base64StringImg = imgString;
     }
 
-    setRecipeNumber(recipeNumber: string){
+    setRecipeNumber(recipeNumber: string) {
         this.recipeNumber = recipeNumber;
     }
 
@@ -75,20 +76,19 @@ export class ExpensesComponent implements OnInit {
         let cameraAvailable: Boolean = cameraModule.isAvailable();
 
         let valid = !isNullOrUndefined(this.category) && !isNullOrUndefined(this.amount);
-        if (cameraAvailable){
+        if (cameraAvailable) {
             valid = valid && !isNullOrUndefined(this.base64StringImg);
         }
 
-        if (valid){
+        if (valid) {
             this.httpService.upload({
                 empId: this.employee.id,
                 empName: this.employee.name,
-                type: this.category.name,
+                type: this.category.id === 0 ? this.customType : this.category.name,
                 amount: this.amount,
                 invoiceDate: invDate.getTime(),
                 createDate: currentDate.getTime(),
-                image: this.base64StringImg,
-                recipeNumber: this.recipeNumber
+                image: this.base64StringImg
             }).subscribe(data => {
                 this.routerExtensions.navigate(["success"], {
                     transition: {
@@ -96,7 +96,7 @@ export class ExpensesComponent implements OnInit {
                     }
                 });
             }, error => {
-                console.log('error---->',error);
+                console.log('error---->', error);
                 this.routerExtensions.navigate(["failure"], {
                     transition: {
                         name: "flip"
