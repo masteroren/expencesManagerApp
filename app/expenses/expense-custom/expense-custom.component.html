@@ -1,11 +1,11 @@
 <StackLayout  horizontalAlignment="center" padding="0 15px">
     <StackLayout>
-        <Label class="exp-label {{category.class}}" text="סוג" horizontalAlignment="right"></Label>
+        <Label class="exp-label {{category.class}}" text="פירוט" horizontalAlignment="right"></Label>
     </StackLayout>
     <StackLayout horizontalAlignment="right" marginBottom="10">
         <TextField #customType
                    class="input"
-                   hint="הזן סוג" borderColor="black" borderWidth="1" height="50" width="100%"
+                   hint="פירוט ההוצאה..." borderColor="black" borderWidth="1" height="50" width="100%"
                    fontSize="20" text="{{type}}" horizontalAlignment="right"
                    (propertyChange)="typeChanged(customType.text)"></TextField>
     </StackLayout>
