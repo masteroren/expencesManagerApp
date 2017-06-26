@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpService} from "../shared/services/httpService";
-import cameraModule = require("camera");
+import cameraModule = require("nativescript-camera");
 
 // Native Script core
 import {RouterExtensions} from "nativescript-angular";
@@ -83,27 +83,15 @@ export class ExpensesComponent implements OnInit {
                 invoiceDate: invDate.getTime(),
                 createDate: currentDate.getTime(),
                 image: this.base64StringImg
-            }).subscribe(data => {
-                this.routerExtensions.navigate(["success"], {
-                    transition: {
-                        name: "flip"
-                    }
-                });
+            }).subscribe(_ => {
+                this.routerExtensions.navigate(["success"]);
             }, error => {
                 console.log('error---->', error);
-                this.routerExtensions.navigate(["failure"], {
-                    transition: {
-                        name: "flip"
-                    }
-                });
-            });
+                this.routerExtensions.navigate(["failure"]);
+            })
         } else {
             console.log('not Valid');
-            this.routerExtensions.navigate(["failure"], {
-                transition: {
-                    name: "flip"
-                }
-            });
+            this.routerExtensions.navigate(["failure"]);
         }
     }
 }

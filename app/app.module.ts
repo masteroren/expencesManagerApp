@@ -1,5 +1,4 @@
 import {NgModule, NO_ERRORS_SCHEMA} from "@angular/core";
-import {NativeScriptModule} from "nativescript-angular/platform";
 import {NativeScriptRouterModule} from "nativescript-angular/router";
 import {NativeScriptHttpModule} from "nativescript-angular/http";
 
@@ -13,7 +12,6 @@ import {appRoutes} from "./app.routing";
     declarations: [AppComponent],
     bootstrap: [AppComponent],
     imports: [
-        NativeScriptModule,
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(appRoutes),
         NativeScriptHttpModule,

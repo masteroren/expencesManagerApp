@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
-import cameraModule = require("camera");
+import cameraModule = require("nativescript-camera");
 import {ICategory} from "../../shared/interfaces/ICategory";
 
 @Component({
@@ -18,7 +18,7 @@ export class ExpenseImageComponent {
         if (this.cameraAvailable) {
             cameraModule.takePicture({width:50, keepAspectRatio: true}).then(imageSource => {
                 this.imageSrc = imageSource;
-                this.onTakePicture.emit(imageSource.toBase64String("jpeg"))
+                // this.onTakePicture.emit(imageSource.toBase64String("jpeg"))
             });
 
         }
