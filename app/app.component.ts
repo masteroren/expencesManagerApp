@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 
 @Component({
-    selector: "my-app",
-    templateUrl: "app.component.html"
+    selector: "app",
+    template: "<page-router-outlet></page-router-outlet>"
 })
 export class AppComponent implements OnInit {
     constructor() {

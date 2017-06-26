@@ -4,8 +4,8 @@ import {NativeScriptRouterModule} from "nativescript-angular/router";
 import {NativeScriptHttpModule} from "nativescript-angular/http";
 
 import {AppComponent} from "./app.component";
-import {ExpensesModule} from "./expenses/expenses.module";
-import {WelcomeModule} from "./welcome/welcome.module";
+import {ExpensesModule} from "./expenses";
+import {UsersModule} from "./users";
 
 import {appRoutes} from "./app.routing";
 
@@ -17,7 +17,7 @@ import {appRoutes} from "./app.routing";
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(appRoutes),
         NativeScriptHttpModule,
-        WelcomeModule,
+        UsersModule,
         ExpensesModule,
     ],
     schemas: [NO_ERRORS_SCHEMA]

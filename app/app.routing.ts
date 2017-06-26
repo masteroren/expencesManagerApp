@@ -1,5 +1,5 @@
 import {ExpensesComponent} from "./expenses/expenses.component";
-import {WelcomeComponent} from "./welcome/welcome.component";
+import {UsersComponent} from "./users/users.component";
 import {SuccessComponent} from "./expenses/success/success.component";
 import {FailureComponent} from "./expenses/failure/failure.component";
 
@@ -7,11 +7,11 @@ export const appRoutes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/welcome'
+        redirectTo: '/users'
     },
     {
-        path: 'welcome',
-        component: WelcomeComponent
+        path: 'users',
+        component: UsersComponent
     },
     {
         path: 'expenses',

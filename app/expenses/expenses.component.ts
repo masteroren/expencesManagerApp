@@ -1,5 +1,4 @@
 import {Component, OnInit} from "@angular/core";
-import {Page} from "ui/page";
 import {HttpService} from "../shared/services/httpService";
 import cameraModule = require("camera");
 
@@ -18,17 +17,16 @@ import {isNullOrUndefined} from "utils/types";
     providers: [HttpService]
 })
 export class ExpensesComponent implements OnInit {
-    employee: IEmployee;
-    category: ICategory;
-    minDate: Date = new Date();
-    amount: number;
-    customType: string;
-    invoiceDate: Date;
-    base64StringImg: string = '';
-    recipeNumber: string = '';
+    private employee: IEmployee;
+    private category: ICategory;
+    private minDate: Date = new Date();
+    private amount: number;
+    private customType: string;
+    private invoiceDate: Date;
+    private base64StringImg: string = '';
+    private recipeNumber: string = '';
 
-    constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
-        page.actionBarHidden = true;
+    constructor(private httpService: HttpService, private routerExtensions: RouterExtensions) {
     }
 
     ngOnInit() {
@@ -37,40 +35,36 @@ export class ExpensesComponent implements OnInit {
         }
     }
 
-    logout() {
+    private logout() {
         localStorage.clear();
-        this.routerExtensions.navigate(["welcome"], {
-            transition: {
-                name: "flip"
-            }
-        });
+        this.routerExtensions.navigate(["users"]);
     }
 
-    setCustomType(value: string) {
+    private setCustomType(value: string) {
         this.customType = value;
     }
 
-    setAmount(amount) {
+    private setAmount(amount) {
         this.amount = amount;
     }
 
-    setCategory(category: ICategory) {
+    private setCategory(category: ICategory) {
         this.category = category;
     }
 
-    setDate(date: number) {
+    private setDate(date: number) {
         this.invoiceDate = new Date(date);
     }
 
-    setImage(imgString: string) {
+    private setImage(imgString: string) {
         this.base64StringImg = imgString;
     }
 
-    setRecipeNumber(recipeNumber: string) {
+    private setRecipeNumber(recipeNumber: string) {
         this.recipeNumber = recipeNumber;
     }
 
-    sendInvoice() {
+    private sendInvoice() {
         let invDate = this.invoiceDate ? this.invoiceDate : this.minDate;
         let currentDate = new Date();
         let cameraAvailable: Boolean = cameraModule.isAvailable();

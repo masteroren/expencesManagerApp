@@ -1,3 +1,7 @@
+<ActionBar>
+
+</ActionBar>
+
 <StackLayout class="main-container">
     <FlexboxLayout *ngIf="!userIn" justifyContent="space-between" flexDirection="column" height="100%">
         <StackLayout>
@@ -11,23 +15,18 @@
                 <Label class="welcome-label" horizontalAlignment="center" text="החזר ההוצאות של UI"></Label>
             </StackLayout>
 
-            <StackLayout class="welcome">
+            <StackLayout class="users">
                 <ListView [items]="employees" class="employees-list" verticalAlignment="center"
                           (itemTap)="onItemTap($event)">
                     <template let-employee="item" let-i="index" class="employee-item">
                         <GridLayout rows="30" columns="*">
-                            <!--<Label col="0" [text]="employee.id" verticalAlignment="center" fontSize="18"></Label>-->
                             <Label col="1" [text]="employee.name" verticalAlignment="center" fontSize="18"></Label>
                         </GridLayout>
                     </template>
                 </ListView>
             </StackLayout>
         </StackLayout>
-        <!--<StackLayout marginBottom="20px">-->
-            <!--<Button text="מתחילים" (tap)="start()" class="btn-start" color="white"></Button>-->
-        <!--</StackLayout>-->
     </FlexboxLayout>
-
 
     <StackLayout *ngIf="userIn">
         <Button text="Back to expenses" [nsRouterLink]="['/expenses']"></Button>
