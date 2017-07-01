@@ -18,16 +18,27 @@
                      height="100%" backgroundColor="white">
             <FlexboxLayout height="100%" flexDirection="column">
                 <FlexboxLayout flexGrow="1" flexDirection="column" horizontalAlignment="right">
-                    <Label  class="exp-label {{category.class}}" height="60" marginTop="3" text="{{category.name}}"></Label>
+                    <Label class="exp-label {{category.class}}" height="40" marginTop="3"
+                           text="{{category.name}}"></Label>
 
-                    <expense-custom *ngIf="category.id == 0" [category]="category" (onTypeChanged)="setCustomType($event)"></expense-custom>
+                    <StackLayout>
+                        <expense-custom *ngIf="category.id == 0" [category]="category"
+                                        (onTypeChanged)="setCustomType($event)"></expense-custom>
+                    </StackLayout>
 
-                    <expense-amount [category]="category" (onAmountChanged)="setAmount($event)"></expense-amount>
+                    <StackLayout>
+                        <expense-amount [category]="category" (onAmountChanged)="setAmount($event)"></expense-amount>
+                    </StackLayout>
 
-                    <expense-dates [category]="category" (onDateChanged)="setDate($event)"></expense-dates>
+                    <StackLayout height="130">
+                        <expense-dates [category]="category" (onDateChanged)="setDate($event)"></expense-dates>
+                    </StackLayout>
 
-                    <expense-image flexGrow="1" [category]="category"
-                                   (onTakePicture)="setImage($event)"></expense-image>
+                    <StackLayout>
+                        <expense-image [category]="category"
+                                       (onTakePicture)="setImage($event)"></expense-image>
+                    </StackLayout>
+
                 </FlexboxLayout>
 
                 <FlexboxLayout alignContent="flex-end" justifyContent="center">

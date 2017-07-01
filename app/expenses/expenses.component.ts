@@ -9,6 +9,7 @@ import {ICategory} from "../shared/interfaces/ICategory";
 
 require("nativescript-localstorage");
 import {isNullOrUndefined} from "utils/types";
+import {Page} from "tns-core-modules/ui/page";
 
 @Component({
     selector: 'app-expenses',
@@ -26,7 +27,8 @@ export class ExpensesComponent implements OnInit {
     private base64StringImg: string = '';
     private recipeNumber: string = '';
 
-    constructor(private httpService: HttpService, private routerExtensions: RouterExtensions) {
+    constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
+        page.actionBarHidden = true;
     }
 
     ngOnInit() {

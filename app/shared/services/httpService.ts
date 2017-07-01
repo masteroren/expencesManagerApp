@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {IInvoice} from "../interfaces/IInvoice";
 import {Http} from "@angular/http";
 
-// const BASE_URL = 'http://10.55.4.227:3000/';
+// const BASE_URL = 'http://192.168.1.16:8080/';
 const BASE_URL = 'http://212.143.128.217:9200/';
 
 @Injectable()

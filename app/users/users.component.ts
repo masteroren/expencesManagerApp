@@ -2,6 +2,7 @@ import {IEmployee} from "../shared/interfaces/IEmployee";
 import {Component, OnInit} from "@angular/core";
 import {HttpService} from "../shared/services/httpService";
 import {RouterExtensions} from "nativescript-angular";
+import {Page} from "tns-core-modules/ui/page";
 
 @Component({
     selector: 'welcome',
@@ -13,7 +14,8 @@ export class UsersComponent implements OnInit {
     private employees: IEmployee[] = [];
     private employee: IEmployee;
 
-    constructor(private httpService: HttpService, private routerExtensions: RouterExtensions) {
+    constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
+        page.actionBarHidden = true;
     }
 
     ngOnInit() {

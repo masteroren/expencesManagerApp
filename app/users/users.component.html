@@ -18,9 +18,10 @@
             <StackLayout class="users">
                 <ListView [items]="employees" class="employees-list" verticalAlignment="center"
                           (itemTap)="onItemTap($event)">
-                    <template let-employee="item" let-i="index" class="employee-item">
-                        <GridLayout rows="30" columns="*">
-                            <Label col="1" [text]="employee.name" verticalAlignment="center" fontSize="18"></Label>
+                    <template let-item="item" let-i="index" let-oddrow="odd" let-evenrow="even">
+                        <GridLayout rows="30" columns="20, *">
+                            <Image col="0" src="res://{{item.gender == 1 ? 'male' : 'female'}}"></Image>
+                            <Label col="1" [text]="item.name" verticalAlignment="center" fontSize="16"></Label>
                         </GridLayout>
                     </template>
                 </ListView>
