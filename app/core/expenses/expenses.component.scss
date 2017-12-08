@@ -1,0 +1,68 @@
+$foodColor: #5bd2d1;
+
+.main-container{
+    //background-color: lightslategray;
+}
+
+.expenses-wrapper {
+}
+
+
+.exp-label{
+    font-size: 26px;
+    text-align: center;
+    &.food{
+        color: #5bd2d1;
+    }
+
+    &.driving{
+        color: #71dbbd;
+    }
+
+    &.other{
+        color: #48819e;
+    }
+
+    &.parking{
+        color: #3C5AFD;
+    }
+}
+
+.foodName{
+    color: #00aafc;
+}
+
+.action-image {
+    width: 40px;
+    height: 40px;
+    vertical-align: center;
+}
+
+.action-label {
+    color: #3C5AFD;
+    font-size: 24px;
+    font-weight: bold;
+    vertical-align: center;
+}
+
+.send-btn{
+    width: 100px;
+    height: 100px;
+    color: white;
+    background-color: #6668de;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 20px;
+    &.secondary{
+        background-color: transparent;
+        color: #6668de;
+        border-color: #6668de;
+        border-width:1px;
+    }
+}
+
+.label{
+    padding: 0 0 15px 0;
+    color: white;
+    font-style: italic;
+}

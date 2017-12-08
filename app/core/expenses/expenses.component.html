@@ -1,0 +1,47 @@
+<StackLayout HorizontalOptions="FillAndExpand"
+             padding="15"
+             Orientation="StackOrientation.Vertical" backgroundColor="lightslategray">
+
+    <StackLayout HorizontalOptions="FillAndExpand"
+                 Orientation="StackOrientation.Vertical" height="100%" class="expenses-wrapper">
+
+        <Label class="label" horizontalAlignment="right" text="היי, {{employee.name}}"></Label>
+
+        <expense-type (onCategoryClick)="setCategory($event)"></expense-type>
+
+        <StackLayout HorizontalOptions="FillAndExpand"
+                     Orientation="StackOrientation.Vertical"
+                     height="100%" backgroundColor="white">
+            <FlexboxLayout height="100%" flexDirection="column">
+                <FlexboxLayout flexGrow="1" flexDirection="column" horizontalAlignment="right">
+                    <Label class="exp-label {{category.class}}" height="40" marginTop="3"
+                           text="{{category.name}}"></Label>
+
+                    <StackLayout>
+                        <expense-custom *ngIf="category.id == 0" [category]="category"
+                                        (onTypeChanged)="setCustomType($event)"></expense-custom>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <expense-amount [category]="category" (onAmountChanged)="setAmount($event)"></expense-amount>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <expense-dates [category]="category" (onDateChanged)="setDate($event)"></expense-dates>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <expense-image [category]="category"
+                                       (onTakePicture)="setImage($event)"></expense-image>
+                    </StackLayout>
+
+                </FlexboxLayout>
+
+                <FlexboxLayout alignContent="flex-end" justifyContent="center">
+                    <Button class="send-btn" text="שלח" (tap)="sendInvoice()" width="120" height="50"></Button>
+                    <Button class="send-btn secondary" text="צא" (tap)="logout()" width="120" height="50"></Button>
+                </FlexboxLayout>
+            </FlexboxLayout>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>

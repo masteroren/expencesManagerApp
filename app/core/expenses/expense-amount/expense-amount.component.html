@@ -1,0 +1,14 @@
+<StackLayout  horizontalAlignment="center" padding="0 15px">
+    <StackLayout>
+        <Label class="exp-label {{category.class}}" text="סכום" horizontalAlignment="right"></Label>
+    </StackLayout>
+    <StackLayout horizontalAlignment="right" marginBottom="10">
+        <TextField #amountField
+                   class="input"
+                   keyboardType="number"
+                   hint="סכום ההוצאה..." borderColor="black" borderWidth="1" height="50" width="100%"
+                   fontSize="20" text="{{amount}}" horizontalAlignment="right"
+                   (propertyChange)="amountChanged(amountField.text)"></TextField>
+    </StackLayout>
+
+</StackLayout>

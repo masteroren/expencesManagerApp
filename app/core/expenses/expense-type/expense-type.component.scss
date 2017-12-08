@@ -1,0 +1,26 @@
+.exp-type-container{
+  width: 100%;
+}
+
+.exp-type{
+  width: 25%;
+  &.food{
+    background-color: #5bd2d1;
+  }
+
+  &.driving{
+    background-color: #71dbbd;
+  }
+
+  &.other{
+    background-color: #48819e;
+  }
+
+  &.parking{
+    background-color: #3C5AFD;
+  }
+
+  &.selected{
+    background-color: white;
+  }
+}

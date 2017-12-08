@@ -1,7 +1,7 @@
-import {ExpensesComponent} from "./expenses/expenses.component";
-import {UsersComponent} from "./users/users.component";
-import {SuccessComponent} from "./expenses/success/success.component";
-import {FailureComponent} from "./expenses/failure/failure.component";
+import {ExpensesComponent} from "./core/expenses/expenses.component";
+import {UsersComponent} from "./core/users/users.component";
+import {SuccessComponent} from "./core/expenses/success/success.component";
+import {FailureComponent} from "./core/expenses/failure/failure.component";
 
 export const appRoutes = [
     {
