@@ -1,8 +1,8 @@
-import {IEmployee} from "./../../interfaces/IEmployee";
-import {Component, OnInit} from "@angular/core";
-import {HttpService} from "./../../shared_module/services/httpService";
-import {RouterExtensions} from "nativescript-angular";
-import {Page} from "tns-core-modules/ui/page";
+import { IEmployee } from "./../../interfaces/IEmployee";
+import { Component, OnInit } from "@angular/core";
+import { RouterExtensions } from "nativescript-angular";
+import { Page } from "tns-core-modules/ui/page";
+import { ExpensesService } from "./../../shared_module/services/expenses.service";
 
 @Component({
     moduleId: module.id,
@@ -15,7 +15,11 @@ export class UsersComponent implements OnInit {
     private employees: IEmployee[] = [];
     private employee: IEmployee;
 
-    constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
+    constructor(
+        private page: Page,
+        private expSrv: ExpensesService,
+        private routerExtensions: RouterExtensions) {
+
         page.actionBarHidden = true;
     }
 
@@ -24,12 +28,11 @@ export class UsersComponent implements OnInit {
         if (employee) {
             this.routerExtensions.navigate(["expenses"]);
         } else {
-            this.httpService.users()
-                .subscribe(data => {
-                    this.employees = data.json();
-                }, error => {
-                    console.log(error)
-                });
+            this.expSrv.getUsers().subscribe(data => {
+                this.employees = data;
+            }, error => {
+                console.log(error)
+            });
         }
     }
 

@@ -1,5 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from "@angular/core";
-import {ICategory} from "./../../../interfaces/ICategory";
+import { Component, OnInit } from "@angular/core";
+import { ICategory } from "./../../../interfaces/ICategory";
+import { ExpensesService } from "./../../../shared_module/services/expenses.service";
 
 @Component({
     moduleId: module.id,
@@ -8,8 +9,6 @@ import {ICategory} from "./../../../interfaces/ICategory";
     styleUrls: ['./expense-type.component.css']
 })
 export class ExpenseTypeComponent implements OnInit {
-
-    @Output() onCategoryClick: EventEmitter<ICategory> = new EventEmitter();
 
     showOther: boolean = false;
     selectedIndex: number = 3;
@@ -49,22 +48,24 @@ export class ExpenseTypeComponent implements OnInit {
         }
     ];
 
-    constructor() {
-
-    }
+    constructor(public expSrv: ExpensesService) { }
 
     ngOnInit() {
         this.setSelection(3);
     }
 
-    onTap(i:number){
+    onTap(i: number) {
         this.setSelection(i);
     }
 
-    setSelection(id) {
-        let category: ICategory = this.categories.filter(item => item.id == id)[0];
-        this.selectedIndex = category.id;
-        this.onCategoryClick.emit(category);
+    private setSelection(id: number) {
+        this.expSrv.category = this.categories.find((item: ICategory) => { 
+            if (item.id == id) {
+                return true;
+            }
+        });
+        this.expSrv.expenseModel.type = this.expSrv.category.name;
+        this.selectedIndex = this.expSrv.category.id;
         this.showOther = false;
     }
 }

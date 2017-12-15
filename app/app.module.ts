@@ -1,3 +1,4 @@
+import { UsersModule } from './core/users/users.module';
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
@@ -6,7 +7,7 @@ import { AppComponent } from "./app.component";
 import { ExpensesModule } from "./core/expenses";
 
 import { appRoutes } from "./app.routing";
-import { UsersComponent } from "app/core/users/users.component";
+import { HttpService } from './shared_module/services';
 
 @NgModule({
     declarations: [AppComponent],
@@ -15,9 +16,11 @@ import { UsersComponent } from "app/core/users/users.component";
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(appRoutes),
         NativeScriptHttpModule,
-        UsersComponent
+        UsersModule,
+        ExpensesModule
     ],
-    schemas: [NO_ERRORS_SCHEMA]
+    schemas: [NO_ERRORS_SCHEMA],
+    providers: [HttpService]
 })
 export class AppModule {
 }

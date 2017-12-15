@@ -1,18 +1,8 @@
-<FlexboxLayout flexDirection="column" class="exp-image-container" padding="0 15px">
-    <FlexboxLayout *ngIf="cameraAvailable" horizontalAlignment="right" width="100%" flexDirection="column">
-        <StackLayout height="40">
-            <Label horizontalAlignment="right" class="exp-label {{category.class}}" text="צילום הקבלה"></Label>
-        </StackLayout>
-        <StackLayout>
-            <Image [src]="imageSrc" *ngIf="imageSrc" height="50" (tap)="takePicture()" borderColor="black"
-                   borderWidth="1"></Image>
-            <Image [src]="'res://camera'" margin="5" *ngIf="!imageSrc" width="70"
-                   (tap)="takePicture()"></Image>
-        </StackLayout>
-    </FlexboxLayout>
-
-
-    <StackLayout marginTop="5" *ngIf="!cameraAvailable" width="90%" marginLeft="5%" marginRight="5%">
-        <Label text="המצלמה לא זמינה" color="red" horizontalAlignment="center"></Label>
+<StackLayout class="exp-image-container" padding="0 15px">
+    <StackLayout>
+        <Label horizontalAlignment="right" class="exp-label {{expSrv.category.class}}" text="צילום הקבלה"></Label>
     </StackLayout>
-</FlexboxLayout>
+    <StackLayout>
+        <Image [src]="imageSrc" height="50" (tap)="takePicture()" horizontalAlignment="center"></Image>
+    </StackLayout>
+</StackLayout>

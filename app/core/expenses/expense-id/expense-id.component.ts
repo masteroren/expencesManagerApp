@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {ICategory} from "./../../../interfaces/ICategory";
+import { Component } from "@angular/core";
+import { ExpensesService } from "./../../../shared_module/services/expenses.service";
 
 @Component({
     moduleId: module.id,
@@ -8,10 +8,10 @@ import {ICategory} from "./../../../interfaces/ICategory";
     styleUrls: ['./expense-id.component.css']
 })
 export class ExpenseIdComponent {
-    @Input() category: ICategory;
-    @Output() onRecipeNumberChanged: EventEmitter<string> = new EventEmitter();
 
-    recipeNumberChanged(value){
-        this.onRecipeNumberChanged.emit(value);
+    constructor(public expSrv: ExpensesService) { }
+
+    recipeNumberChanged(value) {
+        this.expSrv.expenseModel.empId = value;
     }
 }

@@ -1,34 +1,31 @@
-import {Component, OnInit} from "@angular/core";
-import {HttpService} from "./../../shared_module/services/httpService";
+import { Component, OnInit } from "@angular/core";
 import cameraModule = require("nativescript-camera");
 
 // Native Script core
-import {RouterExtensions} from "nativescript-angular";
-import {IEmployee} from "./../../interfaces/IEmployee";
-import {ICategory} from "./../../interfaces/ICategory";
+import { RouterExtensions } from "nativescript-angular";
+import { IEmployee } from "./../../interfaces/IEmployee";
+import { ICategory } from "./../../interfaces/ICategory";
 
 require("nativescript-localstorage");
-import {isNullOrUndefined} from "utils/types";
-import {Page} from "tns-core-modules/ui/page";
+import { isNullOrUndefined } from "utils/types";
+import { Page } from "tns-core-modules/ui/page";
+import { ExpensesService } from "./../../shared_module/services/expenses.service";
 
 @Component({
     moduleId: module.id,
     selector: 'app-expenses',
     templateUrl: "./expenses.component.html",
-    styleUrls: ['./expenses.component.css'],
-    providers: [HttpService]
+    styleUrls: ['./expenses.component.css']
 })
 export class ExpensesComponent implements OnInit {
-    private employee: IEmployee;
-    private category: ICategory;
+    public employee: IEmployee;
     private minDate: Date = new Date();
-    private amount: number;
-    private customType: string;
-    private invoiceDate: Date;
-    private base64StringImg: string = '';
-    private recipeNumber: string = '';
 
-    constructor(private page: Page, private httpService: HttpService, private routerExtensions: RouterExtensions) {
+    constructor(
+        public page: Page,
+        public expSrv: ExpensesService,
+        public routerExtensions: RouterExtensions) {
+
         page.actionBarHidden = true;
     }
 
@@ -43,50 +40,18 @@ export class ExpensesComponent implements OnInit {
         this.routerExtensions.navigate(["users"]);
     }
 
-    private setCustomType(value: string) {
-        this.customType = value;
-    }
-
-    private setAmount(amount) {
-        this.amount = amount;
-    }
-
-    private setCategory(category: ICategory) {
-        this.category = category;
-    }
-
-    private setDate(date: number) {
-        this.invoiceDate = new Date(date);
-    }
-
-    private setImage(imgString: string) {
-        this.base64StringImg = imgString;
-    }
-
-    private setRecipeNumber(recipeNumber: string) {
-        this.recipeNumber = recipeNumber;
-    }
-
     private sendInvoice() {
-        let invDate = this.invoiceDate ? this.invoiceDate : this.minDate;
-        let currentDate = new Date();
+        let invoiceDate = this.expSrv.expenseModel.invoiceDate ? this.expSrv.expenseModel.invoiceDate : this.minDate;
+        this.expSrv.expenseModel.createDate = new Date().getTime();
         let cameraAvailable: Boolean = cameraModule.isAvailable();
 
-        let valid = !isNullOrUndefined(this.category) && !isNullOrUndefined(this.amount);
-        if (cameraAvailable) {
-            valid = valid && !isNullOrUndefined(this.base64StringImg);
-        }
+        let valid = !isNullOrUndefined(this.expSrv.category) && !isNullOrUndefined(this.expSrv.expenseModel.amount);
+
+        this.expSrv.expenseModel.empId = this.employee.id;
+        this.expSrv.expenseModel.empName = this.employee.name;
 
         if (valid) {
-            this.httpService.upload({
-                empId: this.employee.id,
-                empName: this.employee.name,
-                type: this.category.id === 0 ? this.customType : this.category.name,
-                amount: this.amount,
-                invoiceDate: invDate.getTime(),
-                createDate: currentDate.getTime(),
-                image: this.base64StringImg
-            }).subscribe(_ => {
+            this.expSrv.uploadInvoice().subscribe(_ => {
                 this.routerExtensions.navigate(["success"]);
             }, error => {
                 console.log('error---->', error);

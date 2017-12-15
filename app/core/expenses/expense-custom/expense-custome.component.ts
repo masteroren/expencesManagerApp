@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {ICategory} from "./../../../interfaces/ICategory";
+import { ExpensesService } from './../../../shared_module/services/expenses.service';
+import { Component } from "@angular/core";
 
 @Component({
     moduleId: module.id,
@@ -9,11 +9,9 @@ import {ICategory} from "./../../../interfaces/ICategory";
 })
 export class ExpenseCustomComponent {
 
-    @Input() type: string;
-    @Input() category: ICategory;
-    @Output() onTypeChanged: EventEmitter<string> = new EventEmitter();
+    constructor(public expSrv: ExpensesService) { }
 
-    typeChanged(value){
-        this.onTypeChanged.emit(value);
+    textChange(value: string) {
+        this.expSrv.expenseModel.type = value;
     }
 }

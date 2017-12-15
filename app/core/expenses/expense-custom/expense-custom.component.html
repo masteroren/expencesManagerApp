@@ -1,12 +1,12 @@
-<StackLayout  horizontalAlignment="center" padding="0 15px">
+<StackLayout  *ngIf="expSrv.category && expSrv.category.id == 0" horizontalAlignment="center" padding="0 15px">
     <StackLayout>
-        <Label class="exp-label {{category.class}}" text="פירוט" horizontalAlignment="right"></Label>
+        <Label class="exp-label {{expSrv.category.class}}" text="סוג" horizontalAlignment="right"></Label>
     </StackLayout>
     <StackLayout horizontalAlignment="right" marginBottom="10">
         <TextField #customType
                    class="input"
-                   hint="פירוט ההוצאה..." borderColor="black" borderWidth="1" height="50" width="100%"
+                   hint="סוג..." borderColor="black" borderWidth="1" height="50" width="100%"
                    fontSize="20" text="{{type}}" horizontalAlignment="right"
-                   (propertyChange)="typeChanged(customType.text)"></TextField>
+                   (textChange)="textChange(customType.text)"></TextField>
     </StackLayout>
 </StackLayout>

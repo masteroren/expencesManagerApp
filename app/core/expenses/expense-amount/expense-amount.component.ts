@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {ICategory} from "./../../../interfaces/ICategory";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ICategory } from "./../../../interfaces/ICategory";
+import { ExpensesService } from "./../../../shared_module/services/expenses.service";
 
 @Component({
     moduleId: module.id,
@@ -7,13 +8,12 @@ import {ICategory} from "./../../../interfaces/ICategory";
     templateUrl: './expense-amount.component.html',
     styleUrls: ['./expense-amount.component.css']
 })
-export class ExpenseAmountComponent{
+export class ExpenseAmountComponent {
 
-    @Input() amount: string;
-    @Input() category: ICategory;
-    @Output() onAmountChanged: EventEmitter<string> = new EventEmitter();
+    constructor(public expSrv: ExpensesService) {
+    }
 
-    amountChanged(value){
-        this.onAmountChanged.emit(value);
+    amountChanged(value) {
+        this.expSrv.expenseModel.amount = value;
     }
 }

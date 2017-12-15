@@ -1,5 +1,5 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
-import {ICategory} from "./../../../interfaces/ICategory";
+import { Component, ElementRef, ViewChild } from "@angular/core";
+import { ExpensesService } from "./../../../shared_module/services/expenses.service";
 
 @Component({
     moduleId: module.id,
@@ -8,30 +8,30 @@ import {ICategory} from "./../../../interfaces/ICategory";
     styleUrls: ['./expense-dates.component.css']
 })
 export class ExpenseDatesComponent {
-    @Input() category: ICategory;
-    @Output() onDateChanged: EventEmitter<number> = new EventEmitter();
 
     @ViewChild('invoiceDate') invoiceDate: ElementRef;
     invDate: any;
 
-    ngAfterViewInit(){
+    constructor(public expSrv: ExpensesService) { }
+
+    ngAfterViewInit() {
         this.invDate = this.invoiceDate.nativeElement;
         this.invDate.date = new Date();
-        this.invDate.minDate = new Date(2015,12,30);
+        this.invDate.minDate = new Date(2015, 12, 30);
         this.invDate.maxDate = new Date();
-
+        this.expSrv.expenseModel.invoiceDate = this.invDate.date.getTime();
     }
 
     dateChanged(e) {
         console.log('Date Picker date changed => ', e.value);
         let currentDate = new Date();
         console.log('Current date => ', currentDate);
-        if (currentDate < e.value){
+        if (currentDate < e.value) {
             console.log('Wrong date');
             this.invDate.android.date = currentDate;
-            this.onDateChanged.emit(currentDate.getTime());
+            this.expSrv.expenseModel.invoiceDate = currentDate.getTime();
         }
-        this.onDateChanged.emit(e.value);
+        this.expSrv.expenseModel.invoiceDate = e.value.getTime();
     }
 
     getMaxDate() {
@@ -41,7 +41,7 @@ export class ExpenseDatesComponent {
     getMinDate() {
     }
 
-    getCurrDate(){
+    getCurrDate() {
         return new Date();
     }
 

@@ -7,39 +7,35 @@
   "repository": "https://github.com/ui-dev-team/NTS-oren.git",
   "nativescript": {
     "id": "org.nativescript.expencesManagerApp",
-    "platforms": {
-      "android": "3.0.0",
-      "ios": "3.0.0"
-    },
     "tns-android": {
-      "version": "3.1.1"
+      "version": "3.2.0"
     }
   },
   "dependencies": {
-    "@angular/animations": "~4.1.0",
-    "@angular/common": "~4.1.0",
-    "@angular/compiler": "~4.1.0",
-    "@angular/core": "~4.1.0",
-    "@angular/forms": "~4.1.0",
-    "@angular/http": "~4.1.0",
-    "@angular/platform-browser": "~4.1.0",
-    "@angular/router": "~4.1.0",
+    "@angular/animations": "^4.2.0",
+    "@angular/common": "^4.2.0",
+    "@angular/compiler": "^4.2.0",
+    "@angular/core": "^4.2.0",
+    "@angular/forms": "^4.2.0",
+    "@angular/http": "^4.2.0",
+    "@angular/platform-browser": "^4.2.0",
+    "@angular/router": "^4.2.0",
     "angular2-moment": "^1.3.3",
     "core-js": "^2.4.1",
     "ie-shim": "^0.1.0",
-    "nativescript-angular": "~3.0.0",
+    "nativescript-angular": "^4.2.0",
     "nativescript-camera": "^3.0.0",
     "nativescript-localstorage": "^1.1.0",
-    "nativescript-theme-core": "~1.0.2",
+    "nativescript-theme-core": "^1.0.2",
     "reflect-metadata": "~0.1.8",
-    "rxjs": "~5.3.0",
-    "tns-core-modules": "~3.0.0",
+    "rxjs": "^5.3.0",
+    "tns-core-modules": "^3.3.0",
     "tns-platform-declarations": "^3.0.1",
     "zone.js": "~0.8.2"
   },
   "devDependencies": {
-    "nativescript-dev-typescript": "~0.4.0",
-    "typescript": "~2.2.1",
+    "nativescript-dev-typescript": "^0.4.0",
+    "typescript": "~2.4.2",
     "babel-traverse": "6.21.0",
     "babel-types": "6.21.0",
     "babylon": "6.14.1",
