@@ -1,4 +1,3 @@
-import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from "@angular/core";
 import cameraModule = require("nativescript-camera");
 
@@ -25,7 +24,6 @@ export class ExpensesComponent implements OnInit {
     constructor(
         public page: Page,
         public dataService: DataService,
-        public activatedRoute: ActivatedRoute,
         public routerExtensions: RouterExtensions) {
 
         page.actionBarHidden = true;
@@ -43,11 +41,14 @@ export class ExpensesComponent implements OnInit {
     }
 
     private sendInvoice() {
+
         let invoiceDate = this.dataService.expenseModel.invoiceDate ? this.dataService.expenseModel.invoiceDate : this.minDate;
         this.dataService.expenseModel.createDate = new Date().getTime();
         let cameraAvailable: Boolean = cameraModule.isAvailable();
 
-        let valid = !isNullOrUndefined(this.dataService.category) && !isNullOrUndefined(this.dataService.expenseModel.amount);
+        let valid = !isNullOrUndefined(this.dataService.category) &&
+            !isNullOrUndefined(this.dataService.expenseModel.amount) &&
+            this.dataService.expenseModel.amount != 0;
 
         this.dataService.expenseModel.empId = this.employee.id;
         this.dataService.expenseModel.empName = this.employee.name;

@@ -20,7 +20,7 @@ export class ExpenseTypeComponent implements OnInit {
             image_on: 'res://receipts_purple',
             image_off: 'res://other_icon_white',
             class: 'other',
-            color: '#48819e'
+            // color: '#48819e'
         },
         {
             id: 1,
@@ -28,7 +28,7 @@ export class ExpenseTypeComponent implements OnInit {
             image_on: 'res://car_purple',
             image_off: 'res://transportation_icon_white',
             class: 'driving',
-            color: '#71dbbd'
+            // color: '#71dbbd'
         },
         {
             id: 2,
@@ -36,7 +36,7 @@ export class ExpenseTypeComponent implements OnInit {
             image_on: 'res://cupcake_purple',
             image_off: 'res://food_icon_white',
             class: 'food',
-            color: '#5bd2d1'
+            // color: '#5bd2d1'
         },
         {
             id: 3,
@@ -44,7 +44,7 @@ export class ExpenseTypeComponent implements OnInit {
             image_on: 'res://parking_icon',
             image_off: 'res://parking_white',
             class: 'parking',
-            color: '#ff4e50'
+            // color: '#ff4e50'
         }
     ];
 

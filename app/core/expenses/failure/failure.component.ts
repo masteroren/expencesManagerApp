@@ -1,6 +1,6 @@
-import {Component} from "@angular/core";
-import {RouterExtensions} from "nativescript-angular";
-import {Page} from "ui/page";
+import { Component } from "@angular/core";
+import { RouterExtensions } from "nativescript-angular";
+import { Page } from "ui/page";
 
 @Component({
     moduleId: module.id,
@@ -8,13 +8,13 @@ import {Page} from "ui/page";
     templateUrl: 'failure.component.html',
     styleUrls: ['failure.component.css']
 })
-export class FailureComponent{
+export class FailureComponent {
 
-    constructor(private page: Page, private routerExtensions: RouterExtensions){
+    constructor(private page: Page, private routerExtensions: RouterExtensions) {
         page.actionBarHidden = true;
     }
 
-    backToExpenses(){
+    backToExpenses() {
         this.routerExtensions.back();
     }
 }

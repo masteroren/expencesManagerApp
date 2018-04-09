@@ -2,20 +2,19 @@
   background-color: lightslategray;
   height: 100%;
 
-  .failure-image{
+  &__image{
     margin: 15px;
   }
 
-  .failure-text{
+  &__text{
     color: white;
   }
 
-  .failure-btn{
+  .btn{
     background-color: #53d8ea;
     color: white;
     width: 100px;
     margin-top: 10px;
     border-radius: 5px;
-    font-size: 28px!important;
   }
 }

@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { ICategory } from "./../../../interfaces/ICategory";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { DataService } from "./../../../shared_module/services/data.service";
 
 @Component({

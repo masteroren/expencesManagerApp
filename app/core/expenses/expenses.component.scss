@@ -1,32 +1,36 @@
-$foodColor: #5bd2d1;
+$food-color: #5bd2d1;
+$driving-color: #71dbbd;
+$other-color: #48819e;
+$parking-color: #3C5AFD;
 
 .main-container{
     //background-color: lightslategray;
 }
 
 .expenses-wrapper {
-}
-
-
-.exp-label{
-    font-size: 26px;
-    text-align: center;
-    &.food{
-        color: #5bd2d1;
-    }
-
-    &.driving{
-        color: #71dbbd;
-    }
-
-    &.other{
-        color: #48819e;
-    }
-
-    &.parking{
-        color: #3C5AFD;
+    .exp-label{
+        font-size: 26px;
+        text-align: center;
+        &.food{
+            color: $food-color;
+        }
+    
+        &.driving{
+            color: $driving-color;
+        }
+    
+        &.other{
+            color: $other-color;
+        }
+    
+        &.parking{
+            color: $parking-color;
+        }
     }
 }
+
+
+
 
 .foodName{
     color: #00aafc;

@@ -4,5 +4,5 @@ export interface ICategory{
     image_on: string;
     image_off: string;
     class: string;
-    color: string;
+    // color: string;
 }
