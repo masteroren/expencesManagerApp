@@ -31,6 +31,10 @@ export class UsersComponent implements OnInit {
     onItemTap(args) {
         const employee = <IEmployee>(args.object.items[args.index]);
         localStorage.setItem('employee', JSON.stringify(employee));
-        this.routerExtensions.navigate(['expenses']);
+        this.routerExtensions.navigate(['expenses'], {
+            transition: {
+                name: "flip"
+            }
+        });
     }
 }
