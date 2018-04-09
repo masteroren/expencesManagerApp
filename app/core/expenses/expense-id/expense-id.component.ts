@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { ExpensesService } from "./../../../shared_module/services/expenses.service";
+import { DataService } from './../../../shared_module/services/data.service';
 
 @Component({
     moduleId: module.id,
@@ -9,9 +9,9 @@ import { ExpensesService } from "./../../../shared_module/services/expenses.serv
 })
 export class ExpenseIdComponent {
 
-    constructor(public expSrv: ExpensesService) { }
+    constructor(public dataService: DataService) { }
 
     recipeNumberChanged(value) {
-        this.expSrv.expenseModel.empId = value;
+        this.dataService.expenseModel.empId = value;
     }
 }

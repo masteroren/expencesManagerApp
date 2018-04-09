@@ -1,26 +1,30 @@
-import { UsersModule } from './core/users/users.module';
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http"
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { NativeScriptHttpModule } from "nativescript-angular/http";
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 
 import { AppComponent } from "./app.component";
-import { ExpensesModule } from "./core/expenses";
+import { DataService } from "./shared_module/services/data.service";
 
 import { appRoutes } from "./app.routing";
-import { HttpService } from './shared_module/services';
+import { UsersModule } from './core/users/users.module';
+import { MenuComponent } from "./core/menu/menu.component";
+import { ExpensesModule } from "./core/expenses";
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [
+        AppComponent,
+        MenuComponent
+    ],
     bootstrap: [AppComponent],
     imports: [
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(appRoutes),
-        NativeScriptHttpModule,
+        NativeScriptHttpClientModule,
         UsersModule,
         ExpensesModule
     ],
-    schemas: [NO_ERRORS_SCHEMA],
-    providers: [HttpService]
+    schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule {
 }

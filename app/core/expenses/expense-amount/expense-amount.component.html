@@ -1,10 +1,9 @@
 <StackLayout horizontalAlignment="center" padding="0 15px">
     <StackLayout>
-        <Label class="exp-label {{expSrv.category.class}}" text="סכום" horizontalAlignment="right"></Label>
+        <Label class="exp-label {{dataService.category.class}}" text="סכום" horizontalAlignment="right"></Label>
     </StackLayout>
     <StackLayout horizontalAlignment="right" marginBottom="10" direction="rtl">
         <TextField #amountField class="input" keyboardType="number" hint="סכום..." borderColor="black" borderWidth="1" height="50"
             width="100%" fontSize="20" horizontalAlignment="right" (textChange)="amountChanged(amountField.text)"></TextField>
     </StackLayout>
-
 </StackLayout>

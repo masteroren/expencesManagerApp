@@ -16,7 +16,7 @@
             </StackLayout>
 
             <StackLayout class="users">
-                <ListView [items]="employees" class="employees-list" verticalAlignment="center"
+                <ListView [items]="employees | async" class="employees-list" verticalAlignment="center"
                           (itemTap)="onItemTap($event)">
                     <ng-template let-item="item" let-i="index" let-oddrow="odd" let-evenrow="even">
                         <GridLayout rows="30" columns="20, *">

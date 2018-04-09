@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 
+import { DataService } from '../../shared_module/services/data.service';
+
 import { ExpensesComponent } from "./expenses.component";
 import { ExpenseTypeComponent } from "./expense-type/expense-type.component";
 import { ExpenseAmountComponent } from "./expense-amount/expense-amount.component";
@@ -10,7 +12,6 @@ import { ExpenseImageComponent } from "./expense-image/expense-image.component";
 import { SuccessComponent } from "./success/success.component";
 import { FailureComponent } from "./failure/failure.component";
 import { ExpenseCustomComponent } from "./expense-custom/expense-custome.component";
-import { ExpensesService } from './../../shared_module/services/expenses.service';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,7 @@ import { ExpensesService } from './../../shared_module/services/expenses.service
         CommonModule
     ],
     exports: [ExpensesComponent],
-    providers: [ExpensesService]
+    providers: [DataService]
 })
 export class ExpensesModule {
 }

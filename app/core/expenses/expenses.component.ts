@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from "@angular/core";
 import cameraModule = require("nativescript-camera");
 
@@ -9,13 +10,13 @@ import { ICategory } from "./../../interfaces/ICategory";
 require("nativescript-localstorage");
 import { isNullOrUndefined } from "utils/types";
 import { Page } from "tns-core-modules/ui/page";
-import { ExpensesService } from "./../../shared_module/services/expenses.service";
+import { DataService } from "./../../shared_module/services/data.service";
 
 @Component({
     moduleId: module.id,
     selector: 'app-expenses',
-    templateUrl: "./expenses.component.html",
-    styleUrls: ['./expenses.component.css']
+    templateUrl: "expenses.component.html",
+    styleUrls: ['expenses.component.css']
 })
 export class ExpensesComponent implements OnInit {
     public employee: IEmployee;
@@ -23,7 +24,8 @@ export class ExpensesComponent implements OnInit {
 
     constructor(
         public page: Page,
-        public expSrv: ExpensesService,
+        public dataService: DataService,
+        public activatedRoute: ActivatedRoute,
         public routerExtensions: RouterExtensions) {
 
         page.actionBarHidden = true;
@@ -41,17 +43,17 @@ export class ExpensesComponent implements OnInit {
     }
 
     private sendInvoice() {
-        let invoiceDate = this.expSrv.expenseModel.invoiceDate ? this.expSrv.expenseModel.invoiceDate : this.minDate;
-        this.expSrv.expenseModel.createDate = new Date().getTime();
+        let invoiceDate = this.dataService.expenseModel.invoiceDate ? this.dataService.expenseModel.invoiceDate : this.minDate;
+        this.dataService.expenseModel.createDate = new Date().getTime();
         let cameraAvailable: Boolean = cameraModule.isAvailable();
 
-        let valid = !isNullOrUndefined(this.expSrv.category) && !isNullOrUndefined(this.expSrv.expenseModel.amount);
+        let valid = !isNullOrUndefined(this.dataService.category) && !isNullOrUndefined(this.dataService.expenseModel.amount);
 
-        this.expSrv.expenseModel.empId = this.employee.id;
-        this.expSrv.expenseModel.empName = this.employee.name;
+        this.dataService.expenseModel.empId = this.employee.id;
+        this.dataService.expenseModel.empName = this.employee.name;
 
         if (valid) {
-            this.expSrv.uploadInvoice().subscribe(_ => {
+            this.dataService.uploadInvoice().subscribe(_ => {
                 this.routerExtensions.navigate(["success"]);
             }, error => {
                 console.log('error---->', error);

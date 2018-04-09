@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from "@angular/core";
-import { ExpensesService } from "./../../../shared_module/services/expenses.service";
+import { DataService } from "./../../../shared_module/services/data.service";
 
 @Component({
     moduleId: module.id,
@@ -12,14 +12,14 @@ export class ExpenseDatesComponent {
     @ViewChild('invoiceDate') invoiceDate: ElementRef;
     invDate: any;
 
-    constructor(public expSrv: ExpensesService) { }
+    constructor(public dataService: DataService) { }
 
     ngAfterViewInit() {
         this.invDate = this.invoiceDate.nativeElement;
         this.invDate.date = new Date();
         this.invDate.minDate = new Date(2015, 12, 30);
         this.invDate.maxDate = new Date();
-        this.expSrv.expenseModel.invoiceDate = this.invDate.date.getTime();
+        this.dataService.expenseModel.invoiceDate = this.invDate.date.getTime();
     }
 
     dateChanged(e) {
@@ -29,9 +29,9 @@ export class ExpenseDatesComponent {
         if (currentDate < e.value) {
             console.log('Wrong date');
             this.invDate.android.date = currentDate;
-            this.expSrv.expenseModel.invoiceDate = currentDate.getTime();
+            this.dataService.expenseModel.invoiceDate = currentDate.getTime();
         }
-        this.expSrv.expenseModel.invoiceDate = e.value.getTime();
+        this.dataService.expenseModel.invoiceDate = e.value.getTime();
     }
 
     getMaxDate() {

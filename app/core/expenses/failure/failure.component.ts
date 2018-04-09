@@ -5,8 +5,8 @@ import {Page} from "ui/page";
 @Component({
     moduleId: module.id,
     selector: 'exp-failure',
-    templateUrl: './failure.component.html',
-    styleUrls: ['./failure.component.css']
+    templateUrl: 'failure.component.html',
+    styleUrls: ['failure.component.css']
 })
 export class FailureComponent{
 

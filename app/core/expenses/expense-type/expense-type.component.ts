@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { ICategory } from "./../../../interfaces/ICategory";
-import { ExpensesService } from "./../../../shared_module/services/expenses.service";
+import { DataService } from "../../../shared_module/services/data.service";
 
 @Component({
     moduleId: module.id,
     selector: 'expense-type',
-    templateUrl: './expense-type.component.html',
-    styleUrls: ['./expense-type.component.css']
+    templateUrl: 'expense-type.component.html',
+    styleUrls: ['expense-type.component.css']
 })
 export class ExpenseTypeComponent implements OnInit {
 
@@ -48,7 +48,7 @@ export class ExpenseTypeComponent implements OnInit {
         }
     ];
 
-    constructor(public expSrv: ExpensesService) { }
+    constructor(public dataService: DataService) { }
 
     ngOnInit() {
         this.setSelection(3);
@@ -59,13 +59,13 @@ export class ExpenseTypeComponent implements OnInit {
     }
 
     private setSelection(id: number) {
-        this.expSrv.category = this.categories.find((item: ICategory) => { 
+        this.dataService.category = this.categories.find((item: ICategory) => { 
             if (item.id == id) {
                 return true;
             }
         });
-        this.expSrv.expenseModel.type = this.expSrv.category.name;
-        this.selectedIndex = this.expSrv.category.id;
+        this.dataService.expenseModel.type = this.dataService.category.name;
+        this.selectedIndex = this.dataService.category.id;
         this.showOther = false;
     }
 }

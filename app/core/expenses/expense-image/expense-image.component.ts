@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import cameraModule = require("nativescript-camera");
-import { ExpensesService } from "./../../../shared_module/services/expenses.service";
+import { DataService } from './../../../shared_module/services/data.service';
 import { ImageAsset } from "tns-core-modules/image-asset/image-asset";
 import ImageSource = require("image-source");
 
@@ -15,7 +15,7 @@ export class ExpenseImageComponent implements OnInit {
     public cameraAvailable: Boolean = false;
     public imageSrc: any = 'res://camera';
 
-    constructor(public expSrv: ExpensesService) { }
+    constructor(public dataService: DataService) { }
 
     ngOnInit() {
         this.cameraAvailable = cameraModule.isAvailable();
@@ -30,8 +30,7 @@ export class ExpenseImageComponent implements OnInit {
                     this.imageSrc = imageAsset.android;
 
                     ImageSource.fromAsset(imageAsset).then(res => {
-                        this.expSrv.expenseModel.image = res.toBase64String("jpeg", 100);
-                        // console.log(this.expSrv.expenseModel.image);
+                        this.dataService.expenseModel.image = res.toBase64String("jpeg", 100);
                     })
                 });
         }

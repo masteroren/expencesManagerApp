@@ -1,11 +1,13 @@
-import { HttpService } from './http.service';
 import { Injectable } from "@angular/core";
 import { Api } from './../../config/api';
 import { IInvoice } from './../../interfaces/IInvoice';
 import { ICategory } from './../../interfaces/ICategory';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from "rxjs/Observable";
+import { IEmployee } from "../../interfaces/IEmployee";
 
 @Injectable()
-export class ExpensesService {
+export class DataService {
 
     public category: ICategory;
     public expenseModel: IInvoice = {
@@ -18,19 +20,16 @@ export class ExpensesService {
         image: ''
     };
 
-    constructor(private httpSrv: HttpService) {
-    }
+    constructor(private http: HttpClient) {}
 
-    getUsers() {
-        return this.httpSrv.get(Api.GET_USERS)
-
+    getUsers(): Observable<IEmployee[]> {
+        return this.http.get<IEmployee[]>(Api.GET_USERS)
     }
 
     uploadInvoice() {
-        return this.httpSrv.post(Api.ADD_INVOICE, this.expenseModel);
+        return this.http.post(Api.ADD_INVOICE, this.expenseModel);
     }
 
     getExpensesTypes() {
-        return this.httpSrv.get(Api.GET_EXPENCE_TYPES);
-    }
+        return this.http.get(Api.GET_EXPENCE_TYPES);    }
 }

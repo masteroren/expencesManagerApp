@@ -1,17 +1,17 @@
-import { ExpensesService } from './../../../shared_module/services/expenses.service';
+import { DataService } from './../../../shared_module/services/data.service';
 import { Component } from "@angular/core";
 
 @Component({
     moduleId: module.id,
     selector: 'expense-custom',
-    templateUrl: './expense-custom.component.html',
-    styleUrls: ['./expense-custom.component.css']
+    templateUrl: 'expense-custom.component.html',
+    styleUrls: ['expense-custom.component.css']
 })
 export class ExpenseCustomComponent {
 
-    constructor(public expSrv: ExpensesService) { }
+    constructor(public dataService: DataService) { }
 
     textChange(value: string) {
-        this.expSrv.expenseModel.type = value;
+        this.dataService.expenseModel.type = value;
     }
 }

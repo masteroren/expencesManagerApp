@@ -1,7 +1,7 @@
 {
     "vsicons.projectDetection.autoReload": true,
     "files.exclude": {
-        "**/*.css": true,
+        "**/*.css": false,
         "**/*.js": true,
         "**/*.js.map": true
     },
