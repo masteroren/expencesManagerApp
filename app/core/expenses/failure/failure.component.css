@@ -1,1 +1,1 @@
-.failure{background-color:lightslategray;height:100%}.failure .failure-image{margin:15px}.failure .failure-text{color:white}.failure .failure-btn{background-color:#53d8ea;color:white;width:100px;margin-top:10px;border-radius:5px;font-size:28px !important}
+.failure{background-color:lightslategray;height:100%}.failure__image{margin:15px}.failure__text{color:white}.failure .btn{background-color:#53d8ea;color:white;width:100px;margin-top:10px;border-radius:5px}

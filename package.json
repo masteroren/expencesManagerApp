@@ -6,7 +6,7 @@
   "readme": "NativeScript Application",
   "repository": "https://github.com/ui-dev-team/NTS-oren.git",
   "nativescript": {
-    "id": "org.nativescript.expencesManagerApp",
+    "id": "org.nativescript.expencesApp",
     "tns-android": {
       "version": "3.2.0"
     }
@@ -36,6 +36,7 @@
     "babel-types": "6.4.5",
     "babylon": "6.4.5",
     "lazy": "1.0.11",
+    "nativescript-dev-sass": "1.0.0",
     "nativescript-dev-typescript": "~0.6.0",
     "typescript": "~2.6.2"
   }

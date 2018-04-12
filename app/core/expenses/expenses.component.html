@@ -1,12 +1,12 @@
-<StackLayout HorizontalOptions="FillAndExpand" padding="15" Orientation="vertical" backgroundColor="lightslategray">
+<StackLayout class="expenses" HorizontalOptions="FillAndExpand" padding="15" Orientation="vertical" backgroundColor="lightslategray">
 
-    <StackLayout class="expenses-wrapper" HorizontalOptions="FillAndExpand" Orientation="vertical">
+    <StackLayout class="expenses__wrapper">
 
-        <Label class="label" horizontalAlignment="right" text="היי, {{employee.name}}"></Label>
+        <Label class="label expenses__wrapper_name" horizontalAlignment="right" text="היי, {{employee.name}}"></Label>
 
         <expense-type></expense-type>
 
-        <StackLayout HorizontalOptions="FillAndExpand" Orientation="vertical" backgroundColor="white" height="100%">
+        <StackLayout class="expenses__wrapper__main" HorizontalOptions="FillAndExpand" Orientation="vertical" backgroundColor="white" height="100%">
             <FlexboxLayout flexDirection="column" justifyContent="space-between" height="100%">
                 <Label class="exp-label {{dataService.category.class}}" height="40" marginTop="3" text="{{dataService.category.name}}"></Label>
 

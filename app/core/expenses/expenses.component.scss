@@ -3,36 +3,40 @@ $driving-color: #71dbbd;
 $other-color: #48819e;
 $parking-color: #3C5AFD;
 
-.main-container{
-    //background-color: lightslategray;
-}
+.expenses {
 
-.expenses-wrapper {
-    .exp-label{
-        font-size: 26px;
-        text-align: center;
-        &.food{
-            color: $food-color;
+    &__wrapper {
+
+        &__main {
+            border-radius: 0px 0px 30px 30px;
+            background-color: #000;
         }
     
-        &.driving{
-            color: $driving-color;
-        }
+        .exp-label {
+            font-size: 26px;
+            text-align: center;
     
-        &.other{
-            color: $other-color;
-        }
+            &.food {
+                color: $food-color;
+            }
     
-        &.parking{
-            color: $parking-color;
+            &.driving {
+                color: $driving-color;
+            }
+    
+            &.other {
+                color: $other-color;
+            }
+    
+            &.parking {
+                color: $parking-color;
+            }
         }
     }
 }
 
 
-
-
-.foodName{
+.foodName {
     color: #00aafc;
 }
 
@@ -49,7 +53,7 @@ $parking-color: #3C5AFD;
     vertical-align: center;
 }
 
-.send-btn{
+.send-btn {
     width: 100px;
     height: 100px;
     color: white;
@@ -57,15 +61,16 @@ $parking-color: #3C5AFD;
     border-radius: 5px;
     margin: 5px;
     font-size: 20px;
-    &.secondary{
+
+    &.secondary {
         background-color: transparent;
         color: #6668de;
         border-color: #6668de;
-        border-width:1px;
+        border-width: 1px;
     }
 }
 
-.label{
+.label {
     padding: 0 0 15px 0;
     color: white;
     font-style: italic;

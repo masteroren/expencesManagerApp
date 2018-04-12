@@ -30,9 +30,7 @@ export class ExpensesComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (localStorage.getItem('employee')) {
-            this.employee = JSON.parse(localStorage.getItem('employee'));
-        }
+        this.employee = this.dataService.employee;
     }
 
     private logout() {

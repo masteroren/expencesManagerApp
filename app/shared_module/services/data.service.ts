@@ -9,6 +9,7 @@ import { IEmployee } from "../../interfaces/IEmployee";
 @Injectable()
 export class DataService {
 
+    public employee: IEmployee;
     public category: ICategory;
     public expenseModel: IInvoice = {
         empId: 0,
@@ -26,8 +27,8 @@ export class DataService {
         return this.http.get<IEmployee[]>(Api.GET_USERS)
     }
 
-    uploadInvoice() {
-        return this.http.post(Api.ADD_INVOICE, this.expenseModel);
+    uploadInvoice(): Observable<IInvoice> {
+        return this.http.post<IInvoice>(Api.ADD_INVOICE, this.expenseModel);
     }
 
     getExpensesTypes() {

@@ -2,7 +2,7 @@
     "vsicons.projectDetection.autoReload": true,
     "files.exclude": {
         "**/*.css": false,
-        "**/*.js": true,
+        "**/*.js": false,
         "**/*.js.map": true
     },
     "gitlens.advanced.messages": {

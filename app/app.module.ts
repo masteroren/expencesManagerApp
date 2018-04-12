@@ -8,13 +8,12 @@ import { DataService } from "./shared_module/services/data.service";
 
 import { appRoutes } from "./app.routing";
 import { UsersModule } from './core/users/users.module';
-import { MenuComponent } from "./core/menu/menu.component";
 import { ExpensesModule } from "./core/expenses";
+import { LoggedInGuard } from "./shared_module/gurads/loggedIn.guard";
 
 @NgModule({
     declarations: [
-        AppComponent,
-        MenuComponent
+        AppComponent
     ],
     bootstrap: [AppComponent],
     imports: [
@@ -23,6 +22,9 @@ import { ExpensesModule } from "./core/expenses";
         NativeScriptHttpClientModule,
         UsersModule,
         ExpensesModule
+    ],
+    providers: [
+        LoggedInGuard
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })
