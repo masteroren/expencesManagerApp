@@ -1,12 +1,12 @@
 <StackLayout  *ngIf="dataService.category && dataService.category.id == 0" horizontalAlignment="center" padding="0 15px">
-    <StackLayout>
+    <!-- <StackLayout>
         <Label class="exp-label {{dataService.category.class}}" text="סוג" horizontalAlignment="right"></Label>
-    </StackLayout>
-    <StackLayout horizontalAlignment="right" marginBottom="10">
+    </StackLayout> -->
+    <StackLayout horizontalAlignment="right">
         <TextField #customType
-                   class="input"
-                   hint="סוג..." borderColor="black" borderWidth="1" height="50" width="100%"
-                   fontSize="20" text="{{type}}" horizontalAlignment="right"
+                   class="text-field"
+                   hint="סוג..." borderColor="black" height="40" width="100%"
+                   text="{{type}}" horizontalAlignment="right"
                    (textChange)="textChange(customType.text)"></TextField>
     </StackLayout>
 </StackLayout>

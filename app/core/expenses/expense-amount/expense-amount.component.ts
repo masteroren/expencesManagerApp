@@ -15,4 +15,4 @@ export class ExpenseAmountComponent {
     amountChanged(value) {
         this.dataService.expenseModel.amount = value;
     }
-}
+}   

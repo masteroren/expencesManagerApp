@@ -2,21 +2,18 @@
   background-color: lightslategray;
   height: 100%;
 
-  .image{
+  &__image{
     margin: 15px;
   }
 
-  .text{
+  &__text{
 
     color: white;
   }
 
-  .btn{
-    background-color: #53d8ea;
-    color: white;
-    width: 200px;
-    margin-top: 10px;
-    border-radius: 5px;
-    font-size: 28px!important;
-  }
+  &__button {
+       margin-top: 10px;
+       height: 200px;
+       width: 500px;
+   }
 }

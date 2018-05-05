@@ -1,8 +1,8 @@
 <StackLayout class="exp-image-container" padding="0 15px">
     <StackLayout>
-        <Label horizontalAlignment="right" class="exp-label {{dataService.category.class}}" text="צילום הקבלה"></Label>
+        <Label horizontalAlignment="right" class="label {{dataService.category.class}}" text="צילום"></Label>
     </StackLayout>
     <StackLayout>
-        <Image [src]="imageSrc" height="50" (tap)="takePicture()" horizontalAlignment="center"></Image>
+        <Image [src]="imageSrc" (tap)="takePicture()" horizontalAlignment="center" width="100"></Image>
     </StackLayout>
 </StackLayout>

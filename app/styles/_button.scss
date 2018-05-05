@@ -1,0 +1,19 @@
+.button {
+    border-radius: 30px;
+    border-width: 1px;
+    border-color: #fff;
+    width: 100px;
+    color: white;
+    background-color: rgb(123, 123, 139);
+    font-size: 20px;
+    height: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+    &.secondary {
+        background-color: #fff;
+        color: rgb(123, 123, 139);
+        border-color: rgb(123, 123, 139);
+        margin-left: 10px;
+    }
+}

@@ -11,6 +11,8 @@ import { isNullOrUndefined } from "utils/types";
 import { Page } from "tns-core-modules/ui/page";
 import { DataService } from "./../../shared_module/services/data.service";
 
+var application = require('application');
+
 @Component({
     moduleId: module.id,
     selector: 'app-expenses',
@@ -19,6 +21,7 @@ import { DataService } from "./../../shared_module/services/data.service";
 })
 export class ExpensesComponent implements OnInit {
     public employee: IEmployee;
+    public isPortrait = true;
     private minDate: Date = new Date();
 
     constructor(
@@ -31,6 +34,14 @@ export class ExpensesComponent implements OnInit {
 
     ngOnInit() {
         this.employee = this.dataService.employee;
+
+        if (application.android) {
+            console.log("We are running on Android device!");
+            application.on('orientationChanged', (args) => {
+                this.isPortrait = args.newValue == 'portrait';
+                console.log('is portrait', this.isPortrait);
+            });
+        }
     }
 
     private logout() {

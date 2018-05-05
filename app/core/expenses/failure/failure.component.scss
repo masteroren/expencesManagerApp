@@ -1,20 +1,18 @@
-.failure{
-  background-color: lightslategray;
-  height: 100%;
+.failure {
+    background-color: lightslategray;
+    height: 100%;
 
-  &__image{
-    margin: 15px;
-  }
+    &__image {
+        margin: 15px;
+    }
 
-  &__text{
-    color: white;
-  }
+    &__text {
+        color: white;
+    }
 
-  .btn{
-    background-color: #53d8ea;
-    color: white;
-    width: 100px;
-    margin-top: 10px;
-    border-radius: 5px;
-  }
+   &__button {
+        margin-top: 10px;
+        height: 200px;
+        width: 300px;
+    }
 }

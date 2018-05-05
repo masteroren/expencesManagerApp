@@ -1,0 +1,1 @@
+tns build android --release --key-store-path D:\Projects\expencesManagerApp\release.keystore --key-store-password android --key-store-alias androidreleasekey --key-store-alias-password android --copy-to D:\Projects\expencesManagerApp\release.apk
