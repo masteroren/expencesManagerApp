@@ -1,5 +1,5 @@
 <StackLayout class="exp-type-container" backgroundColor="lightslategray">
-    <GridLayout rows="70" columns="auto,auto,auto,auto" horizontalAlignment="center">
+    <GridLayout rows="*" columns="auto,auto,auto,auto" horizontalAlignment="center">
         <StackLayout *ngFor="let category of categories; let i = index" col="{{i}}" class="exp-type {{category.class}}" (tap)="onTap(i);"
             [ngClass]="{selected: selectedIndex == category.id}">
             <FlexboxLayout flexDirection="column" justifyContent="center" horizontalAlignment="center">

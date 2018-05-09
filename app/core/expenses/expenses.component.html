@@ -1,17 +1,17 @@
-<StackLayout class="expenses" HorizontalOptions="FillAndExpand" padding="15" Orientation="vertical" backgroundColor="white">
+<StackLayout class="expenses"  padding="15" backgroundColor="white">
 
-    <Label class="expenses__wrapper__name" horizontalAlignment="right" text="היי, {{employee.name}}"></Label>
+    <Label class="expenses__name" horizontalAlignment="right" text="היי, {{employee.name}}"></Label>
 
-    <FlexboxLayout [visibility]="isPortrait == true ? 'visible' : 'collapsed'" flexDirection="column" justifyContent="space-between"
+    <FlexboxLayout flexDirection="column" justifyContent="space-between"
         class="expenses__wrapper">
 
-        <StackLayout height="70">
+        <StackLayout class="expenses__wrapper__type">
             <expense-type></expense-type>
         </StackLayout>
 
         <StackLayout flexGrow="1">
-            <FlexboxLayout flexDirection="column" class="expenses__wrapper__main" HorizontalOptions="FillAndExpand" Orientation="vertical"
-                backgroundColor="lightslategray" flexGrow="1">
+            <FlexboxLayout flexDirection="column" class="expenses__wrapper__main"
+                backgroundColor="lightslategray">
                 
                 <FlexboxLayout height="70">
                     <expense-amount></expense-amount>

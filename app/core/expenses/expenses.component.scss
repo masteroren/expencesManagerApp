@@ -9,15 +9,25 @@ $parking-color: #3C5AFD;
 }
 
 .expenses {
+    &__name {
+        color: gray;
+        font-style: italic;
+        padding: 0 0 15px 0;
+    }
     &__wrapper {
-        &__name {
-            color: gray;
-            font-style: italic;
-            padding: 0 0 15px 0;
+        height: 100%;
+        // border-width: 2px;
+        // border-color: green;
+        &__type { 
+            height: 220px;
+            // border-width: 2px;
+            // border-color: rgb(64, 90, 238);
         }
         &__main {
             background-color: #000;
             padding-top: 25px;
+            // border-width: 2px;
+            // border-color: red;
 
             .exp-label {
                 font-size: 26px;
